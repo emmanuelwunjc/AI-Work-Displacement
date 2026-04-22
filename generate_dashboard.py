@@ -1534,8 +1534,8 @@ renderOverview();
 </body>
 </html>"""
 
-with open("dashboard.html", "w") as f:
+with open("index.html", "w") as f:
     f.write(HTML)
 
-size = os.path.getsize("dashboard.html") / 1024
-print(f"→ dashboard.html  ({size:.0f} KB)")
+size = os.path.getsize("index.html") / 1024
+print(f"→ index.html  ({size:.0f} KB)")
