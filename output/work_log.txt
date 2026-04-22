@@ -1,0 +1,41 @@
+=== WRANGLE LOG ===
+Source: Macro Project.xlsx
+
+Reading summary sheets (Pre_E, Post_E)…
+  → output/summary_comparison.csv  (4 rows)
+Reading employment detail sheets (Pre_J, Post_J)…
+  → output/industry_employment.csv  (528 industries)
+Reading output detail sheets (Pre_O, Post_O)…
+  → output/industry_output.csv  (529 industries)
+  → output/impact_breakdown_pre.csv  (528 industries)
+  → output/impact_breakdown_post.csv  (528 industries)
+  → output/impact_output_pre.csv  (529 industries)
+  → output/impact_output_post.csv  (529 industries)
+Building combined full table…
+  → output/combined_industry_full.csv  (529 industries, 21 columns)
+
+=== OUTPUT FILE GUIDE ===
+
+  summary_comparison.csv:
+    Mirrors Sheet1 rows 1-8. Pre vs Post totals for Employment, Labor Income, Value Added, Output — broken down by Direct/Indirect/Induced impact + grand Total. Includes absolute change and % change columns.
+
+  industry_employment.csv:
+    Mirrors Sheet1 rows 11-14 scaled to all 528 industries. Pre and Post employment (Direct/Indirect/Induced/Total) per industry, sorted by largest job losses first.
+
+  industry_output.csv:
+    Same structure as industry_employment but for economic Output in dollars. Sorted by largest output change.
+
+  impact_breakdown_pre.csv:
+    Mirrors Sheet1 rows 17-20 template for the Pre-AI scenario. Raw employment impact breakdown (Direct/Indirect/Induced/Total) for each of 528 industries.
+
+  impact_breakdown_post.csv:
+    Same as impact_breakdown_pre but for Post-AI scenario.
+
+  impact_output_pre.csv:
+    Raw output impact breakdown (Direct/Indirect/Induced/Total) for each industry — Pre-AI scenario.
+
+  impact_output_post.csv:
+    Same as impact_output_pre but for Post-AI scenario.
+
+  combined_industry_full.csv:
+    Everything merged: all Pre+Post employment and output columns for all 528 industries in one wide table. Use this for analysis or visualization.

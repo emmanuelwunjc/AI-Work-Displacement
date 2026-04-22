@@ -1,0 +1,445 @@
+series_id,value,industry_code,series_title
+OEUN000000000000000000004,67920.0,000000,Annual mean wage for All Occupations in All Industries in the United States
+OEUN000000000000100000004,67140.0,000001,"Annual mean wage for All Occupations in Cross-industry, Private Ownership only in the United States"
+OEUN000000011--1200000004,44230.0,11--12,"Annual mean wage for All Occupations in Sector 11 - Agriculture, Forestry, Fishing and Hunting in the United States"
+OEUN000000011300000000004,56000.0,113000,Annual mean wage for All Occupations in Forestry and Logging in the United States
+OEUN000000011330000000004,56000.0,113300,Annual mean wage for All Occupations in Logging in the United States
+OEUN000000011500000000004,42910.0,115000,Annual mean wage for All Occupations in Support Activities for Agriculture and Forestry in the United States
+OEUN000000011510000000004,42540.0,115100,Annual mean wage for All Occupations in Support Activities for Crop Production in the United States
+OEUN000000011520000000004,47010.0,115200,Annual mean wage for All Occupations in Support Activities for Animal Production in the United States
+OEUN000000021--2200000004,79490.0,21--22,"Annual mean wage for All Occupations in Sector 21 - Mining, Quarrying, and Oil and Gas Extraction in the United States"
+OEUN000000021100000000004,114750.0,211000,Annual mean wage for All Occupations in Oil and Gas Extraction in the United States
+OEUN000000021110000000004,114750.0,211100,Annual mean wage for All Occupations in Oil and Gas Extraction in the United States
+OEUN000000021200000000004,71840.0,212000,Annual mean wage for All Occupations in Mining (except Oil and Gas) in the United States
+OEUN000000021210000000004,81250.0,212100,Annual mean wage for All Occupations in Coal Mining in the United States
+OEUN000000021220000000004,81020.0,212200,Annual mean wage for All Occupations in Metal Ore Mining in the United States
+OEUN000000021230000000004,64080.0,212300,Annual mean wage for All Occupations in Nonmetallic Mineral Mining and Quarrying in the United States
+OEUN000000021300000000004,70200.0,213000,Annual mean wage for All Occupations in Support Activities for Mining in the United States
+OEUN000000021310000000004,70200.0,213100,Annual mean wage for All Occupations in Support Activities for Mining in the United States
+OEUN000000022--2300000004,101800.0,22--23,Annual mean wage for All Occupations in Sector 22 - Utilities in the United States
+OEUN000000022100000000004,101800.0,221000,Annual mean wage for All Occupations in Utilities in the United States
+OEUN000000022110000000004,106240.0,221100,"Annual mean wage for All Occupations in Electric Power Generation, Transmission and Distribution in the United States"
+OEUN000000022111100000004,110490.0,221111,Annual mean wage for All Occupations in Hydroelectric Power Generation in the United States
+OEUN000000022111200000004,110110.0,221112,Annual mean wage for All Occupations in Fossil Fuel Electric Power Generation in the United States
+OEUN000000022111300000004,121550.0,221113,Annual mean wage for All Occupations in Nuclear Electric Power Generation in the United States
+OEUN000000022111400000004,98190.0,221114,Annual mean wage for All Occupations in Solar Electric Power Generation in the United States
+OEUN000000022111500000004,97480.0,221115,Annual mean wage for All Occupations in Wind Electric Power Generation in the United States
+OEUN000000022111600000004,93620.0,221116,Annual mean wage for All Occupations in Geothermal Electric Power Generation in the United States
+OEUN000000022111700000004,88260.0,221117,Annual mean wage for All Occupations in Biomass Electric Power Generation in the United States
+OEUN000000022111800000004,121320.0,221118,Annual mean wage for All Occupations in Other Electric Power Generation in the United States
+OEUN000000022120000000004,103560.0,221200,Annual mean wage for All Occupations in Natural Gas Distribution in the United States
+OEUN000000022130000000004,68680.0,221300,"Annual mean wage for All Occupations in Water, Sewage and Other Systems in the United States"
+OEUN000000023--2400000004,70100.0,23--24,Annual mean wage for All Occupations in Sector 23 - Construction in the United States
+OEUN000000023600000000004,76370.0,236000,Annual mean wage for All Occupations in Construction of Buildings in the United States
+OEUN000000023610000000004,68620.0,236100,Annual mean wage for All Occupations in Residential Building Construction in the United States
+OEUN000000023620000000004,84590.0,236200,Annual mean wage for All Occupations in Nonresidential Building Construction in the United States
+OEUN000000023700000000004,73860.0,237000,Annual mean wage for All Occupations in Heavy and Civil Engineering Construction in the United States
+OEUN000000023710000000004,72330.0,237100,Annual mean wage for All Occupations in Utility System Construction in the United States
+OEUN000000023713000000004,74690.0,237130,Annual mean wage for All Occupations in Power and Communication Line and Related Structures Construction in the United States
+OEUN000000023720000000004,91070.0,237200,Annual mean wage for All Occupations in Land Subdivision in the United States
+OEUN000000023730000000004,74300.0,237300,"Annual mean wage for All Occupations in Highway, Street, and Bridge Construction in the United States"
+OEUN000000023790000000004,74950.0,237900,Annual mean wage for All Occupations in Other Heavy and Civil Engineering Construction in the United States
+OEUN000000023800000000004,67040.0,238000,Annual mean wage for All Occupations in Specialty Trade Contractors in the United States
+OEUN000000023810000000004,64550.0,238100,"Annual mean wage for All Occupations in Foundation, Structure, and Building Exterior Contractors in the United States"
+OEUN000000023811000000004,64230.0,238110,Annual mean wage for All Occupations in Poured Concrete Foundation and Structure Contractors in the United States
+OEUN000000023814000000004,63380.0,238140,Annual mean wage for All Occupations in Masonry Contractors in the United States
+OEUN000000023816000000004,63520.0,238160,Annual mean wage for All Occupations in Roofing Contractors in the United States
+OEUN000000023820000000004,70790.0,238200,Annual mean wage for All Occupations in Building Equipment Contractors in the United States
+OEUN000000023821000000004,72120.0,238210,Annual mean wage for All Occupations in Electrical Contractors and Other Wiring Installation Contractors in the United States
+OEUN000000023822000000004,68950.0,238220,"Annual mean wage for All Occupations in Plumbing, Heating, and Air-Conditioning Contractors in the United States"
+OEUN000000023829000000004,76580.0,238290,Annual mean wage for All Occupations in Other Building Equipment Contractors in the United States
+OEUN000000023830000000004,62270.0,238300,Annual mean wage for All Occupations in Building Finishing Contractors in the United States
+OEUN000000023831000000004,67420.0,238310,Annual mean wage for All Occupations in Drywall and Insulation Contractors in the United States
+OEUN000000023832000000004,57130.0,238320,Annual mean wage for All Occupations in Painting and Wall Covering Contractors in the United States
+OEUN000000023890000000004,63490.0,238900,Annual mean wage for All Occupations in Other Specialty Trade Contractors in the United States
+OEUN000000031--3400000004,66820.0,31--34,"Annual mean wage for All Occupations in Sectors 31, 32, and 33 - Manufacturing in the United States"
+OEUN000000031100000000004,51290.0,311000,Annual mean wage for All Occupations in Food Manufacturing in the United States
+OEUN000000031110000000004,59560.0,311100,Annual mean wage for All Occupations in Animal Food Manufacturing in the United States
+OEUN000000031120000000004,69350.0,311200,Annual mean wage for All Occupations in Grain and Oilseed Milling in the United States
+OEUN000000031130000000004,52630.0,311300,Annual mean wage for All Occupations in Sugar and Confectionery Product Manufacturing in the United States
+OEUN000000031140000000004,53450.0,311400,Annual mean wage for All Occupations in Fruit and Vegetable Preserving and Specialty Food Manufacturing in the United States
+OEUN000000031150000000004,57620.0,311500,Annual mean wage for All Occupations in Dairy Product Manufacturing in the United States
+OEUN000000031160000000004,46180.0,311600,Annual mean wage for All Occupations in Animal Slaughtering and Processing in the United States
+OEUN000000031170000000004,50350.0,311700,Annual mean wage for All Occupations in Seafood Product Preparation and Packaging in the United States
+OEUN000000031180000000004,46060.0,311800,Annual mean wage for All Occupations in Bakeries and Tortilla Manufacturing in the United States
+OEUN000000031190000000004,56210.0,311900,Annual mean wage for All Occupations in Other Food Manufacturing in the United States
+OEUN000000031200000000004,56380.0,312000,Annual mean wage for All Occupations in Beverage and Tobacco Product Manufacturing in the United States
+OEUN000000031210000000004,55810.0,312100,Annual mean wage for All Occupations in Beverage Manufacturing in the United States
+OEUN000000031220000000004,73310.0,312200,Annual mean wage for All Occupations in Tobacco Manufacturing in the United States
+OEUN000000031300000000004,51120.0,313000,Annual mean wage for All Occupations in Textile Mills in the United States
+OEUN000000031310000000004,44680.0,313100,"Annual mean wage for All Occupations in Fiber, Yarn, and Thread Mills in the United States"
+OEUN000000031320000000004,52370.0,313200,Annual mean wage for All Occupations in Fabric Mills in the United States
+OEUN000000031330000000004,54580.0,313300,Annual mean wage for All Occupations in Textile and Fabric Finishing and Fabric Coating Mills in the United States
+OEUN000000031400000000004,48140.0,314000,Annual mean wage for All Occupations in Textile Product Mills in the United States
+OEUN000000031410000000004,48160.0,314100,Annual mean wage for All Occupations in Textile Furnishings Mills in the United States
+OEUN000000031490000000004,48120.0,314900,Annual mean wage for All Occupations in Other Textile Product Mills in the United States
+OEUN000000031500000000004,52590.0,315000,Annual mean wage for All Occupations in Apparel Manufacturing in the United States
+OEUN000000031510000000004,41880.0,315100,Annual mean wage for All Occupations in Apparel Knitting Mills in the United States
+OEUN000000031520000000004,54800.0,315200,Annual mean wage for All Occupations in Cut and Sew Apparel Manufacturing in the United States
+OEUN000000031590000000004,46080.0,315900,Annual mean wage for All Occupations in Apparel Accessories and Other Apparel Manufacturing in the United States
+OEUN000000031600000000004,46000.0,316000,Annual mean wage for All Occupations in Leather and Allied Product Manufacturing in the United States
+OEUN000000031610000000004,48950.0,316100,Annual mean wage for All Occupations in Leather and Hide Tanning and Finishing in the United States
+OEUN000000031620000000004,45210.0,316200,Annual mean wage for All Occupations in Footwear Manufacturing in the United States
+OEUN000000031690000000004,45950.0,316900,Annual mean wage for All Occupations in Other Leather and Allied Product Manufacturing in the United States
+OEUN000000032100000000004,50640.0,321000,Annual mean wage for All Occupations in Wood Product Manufacturing in the United States
+OEUN000000032110000000004,51660.0,321100,Annual mean wage for All Occupations in Sawmills and Wood Preservation in the United States
+OEUN000000032120000000004,51700.0,321200,"Annual mean wage for All Occupations in Veneer, Plywood, and Engineered Wood Product Manufacturing in the United States"
+OEUN000000032190000000004,49910.0,321900,Annual mean wage for All Occupations in Other Wood Product Manufacturing in the United States
+OEUN000000032200000000004,65400.0,322000,Annual mean wage for All Occupations in Paper Manufacturing in the United States
+OEUN000000032210000000004,77180.0,322100,"Annual mean wage for All Occupations in Pulp, Paper, and Paperboard Mills in the United States"
+OEUN000000032220000000004,61680.0,322200,Annual mean wage for All Occupations in Converted Paper Product Manufacturing in the United States
+OEUN000000032300000000004,54610.0,323000,Annual mean wage for All Occupations in Printing and Related Support Activities in the United States
+OEUN000000032310000000004,54610.0,323100,Annual mean wage for All Occupations in Printing and Related Support Activities in the United States
+OEUN000000032400000000004,96890.0,324000,Annual mean wage for All Occupations in Petroleum and Coal Products Manufacturing in the United States
+OEUN000000032410000000004,96890.0,324100,Annual mean wage for All Occupations in Petroleum and Coal Products Manufacturing in the United States
+OEUN000000032500000000004,82230.0,325000,Annual mean wage for All Occupations in Chemical Manufacturing in the United States
+OEUN00000003250A100000004,83490.0,3250A1,"Annual mean wage for All Occupations in Chemical Manufacturing (3251, 3252, 3253, and 3259 only) in the United States"
+OEUN00000003250A200000004,67370.0,3250A2,Annual mean wage for All Occupations in Chemical Manufacturing (3255 and 3256 only) in the United States
+OEUN000000032540000000004,88520.0,325400,Annual mean wage for All Occupations in Pharmaceutical and Medicine Manufacturing in the United States
+OEUN000000032600000000004,57370.0,326000,Annual mean wage for All Occupations in Plastics and Rubber Products Manufacturing in the United States
+OEUN000000032610000000004,56780.0,326100,Annual mean wage for All Occupations in Plastics Product Manufacturing in the United States
+OEUN000000032620000000004,60010.0,326200,Annual mean wage for All Occupations in Rubber Product Manufacturing in the United States
+OEUN000000032700000000004,60080.0,327000,Annual mean wage for All Occupations in Nonmetallic Mineral Product Manufacturing in the United States
+OEUN000000033100000000004,63890.0,331000,Annual mean wage for All Occupations in Primary Metal Manufacturing in the United States
+OEUN000000033110000000004,69140.0,331100,Annual mean wage for All Occupations in Iron and Steel Mills and Ferroalloy Manufacturing in the United States
+OEUN000000033120000000004,62590.0,331200,Annual mean wage for All Occupations in Steel Product Manufacturing from Purchased Steel in the United States
+OEUN000000033130000000004,64360.0,331300,Annual mean wage for All Occupations in Alumina and Aluminum Production and Processing in the United States
+OEUN000000033140000000004,67650.0,331400,Annual mean wage for All Occupations in Nonferrous Metal (except Aluminum) Production and Processing in the United States
+OEUN000000033150000000004,57970.0,331500,Annual mean wage for All Occupations in Foundries in the United States
+OEUN000000033200000000004,60940.0,332000,Annual mean wage for All Occupations in Fabricated Metal Product Manufacturing in the United States
+OEUN00000003320A100000004,63080.0,3320A1,"Annual mean wage for All Occupations in Fabricated Metal Product Manufacturing (3321, 3322, 3325, 3326, and 3329 only) in the United States"
+OEUN00000003320A200000004,60820.0,3320A2,Annual mean wage for All Occupations in Fabricated Metal Product Manufacturing (3323 and 3324 only) in the United States
+OEUN000000033270000000004,61110.0,332700,"Annual mean wage for All Occupations in Machine Shops; Turned Product; and Screw, Nut, and Bolt Manufacturing in the United States"
+OEUN000000033271000000004,61310.0,332710,Annual mean wage for All Occupations in Machine Shops in the United States
+OEUN000000033272000000004,60420.0,332720,"Annual mean wage for All Occupations in Turned Product and Screw, Nut, and Bolt Manufacturing in the United States"
+OEUN000000033280000000004,53420.0,332800,"Annual mean wage for All Occupations in Coating, Engraving, Heat Treating, and Allied Activities in the United States"
+OEUN000000033300000000004,70350.0,333000,Annual mean wage for All Occupations in Machinery Manufacturing in the United States
+OEUN00000003330A100000004,69650.0,3330A1,"Annual mean wage for All Occupations in Machinery Manufacturing (3331, 3332, 3334, and 3339 only) in the United States"
+OEUN000000033330000000004,78220.0,333300,Annual mean wage for All Occupations in Commercial and Service Industry Machinery Manufacturing in the United States
+OEUN000000033350000000004,64730.0,333500,Annual mean wage for All Occupations in Metalworking Machinery Manufacturing in the United States
+OEUN000000033360000000004,78310.0,333600,"Annual mean wage for All Occupations in Engine, Turbine, and Power Transmission Equipment Manufacturing in the United States"
+OEUN000000033400000000004,99620.0,334000,Annual mean wage for All Occupations in Computer and Electronic Product Manufacturing in the United States
+OEUN000000033410000000004,116870.0,334100,Annual mean wage for All Occupations in Computer and Peripheral Equipment Manufacturing in the United States
+OEUN000000033420000000004,100500.0,334200,Annual mean wage for All Occupations in Communications Equipment Manufacturing in the United States
+OEUN000000033430000000004,88600.0,334300,Annual mean wage for All Occupations in Audio and Video Equipment Manufacturing in the United States
+OEUN000000033440000000004,95170.0,334400,Annual mean wage for All Occupations in Semiconductor and Other Electronic Component Manufacturing in the United States
+OEUN000000033450000000004,99540.0,334500,"Annual mean wage for All Occupations in Navigational, Measuring, Electromedical, and Control Instruments Manufacturing in the United States"
+OEUN000000033460000000004,105380.0,334600,Annual mean wage for All Occupations in Manufacturing and Reproducing Magnetic and Optical Media in the United States
+OEUN000000033500000000004,66350.0,335000,"Annual mean wage for All Occupations in Electrical Equipment, Appliance, and Component Manufacturing in the United States"
+OEUN000000033510000000004,68400.0,335100,Annual mean wage for All Occupations in Electric Lighting Equipment Manufacturing in the United States
+OEUN000000033520000000004,55980.0,335200,Annual mean wage for All Occupations in Household Appliance Manufacturing in the United States
+OEUN000000033530000000004,68460.0,335300,Annual mean wage for All Occupations in Electrical Equipment Manufacturing in the United States
+OEUN000000033590000000004,67550.0,335900,Annual mean wage for All Occupations in Other Electrical Equipment and Component Manufacturing in the United States
+OEUN000000033600000000004,76120.0,336000,Annual mean wage for All Occupations in Transportation Equipment Manufacturing in the United States
+OEUN000000033610000000004,77020.0,336100,Annual mean wage for All Occupations in Motor Vehicle Manufacturing in the United States
+OEUN000000033620000000004,55580.0,336200,Annual mean wage for All Occupations in Motor Vehicle Body and Trailer Manufacturing in the United States
+OEUN000000033630000000004,58990.0,336300,Annual mean wage for All Occupations in Motor Vehicle Parts Manufacturing in the United States
+OEUN000000033640000000004,102300.0,336400,Annual mean wage for All Occupations in Aerospace Product and Parts Manufacturing in the United States
+OEUN000000033650000000004,70610.0,336500,Annual mean wage for All Occupations in Railroad Rolling Stock Manufacturing in the United States
+OEUN000000033660000000004,69110.0,336600,Annual mean wage for All Occupations in Ship and Boat Building in the United States
+OEUN000000033690000000004,60030.0,336900,Annual mean wage for All Occupations in Other Transportation Equipment Manufacturing in the United States
+OEUN000000033700000000004,53740.0,337000,Annual mean wage for All Occupations in Furniture and Related Product Manufacturing in the United States
+OEUN00000003370A100000004,54190.0,3370A1,Annual mean wage for All Occupations in Furniture and Related Product Manufacturing (3371 and 3372 only) in the United States
+OEUN000000033790000000004,48520.0,337900,Annual mean wage for All Occupations in Other Furniture Related Product Manufacturing in the United States
+OEUN000000033900000000004,66800.0,339000,Annual mean wage for All Occupations in Miscellaneous Manufacturing in the United States
+OEUN000000033910000000004,72960.0,339100,Annual mean wage for All Occupations in Medical Equipment and Supplies Manufacturing in the United States
+OEUN000000033990000000004,59800.0,339900,Annual mean wage for All Occupations in Other Miscellaneous Manufacturing in the United States
+OEUN000000033991000000004,55080.0,339910,Annual mean wage for All Occupations in Jewelry and Silverware Manufacturing in the United States
+OEUN000000042--4300000004,74170.0,42--43,Annual mean wage for All Occupations in Sector 42 - Wholesale Trade in the United States
+OEUN000000042300000000004,74720.0,423000,"Annual mean wage for All Occupations in Merchant Wholesalers, Durable Goods in the United States"
+OEUN00000004230A100000004,69600.0,4230A1,"Annual mean wage for All Occupations in Merchant Wholesalers, Durable Goods (4232, 4233, 4235, 4236, 4237, and 4239 only) in the United States"
+OEUN000000042310000000004,61720.0,423100,Annual mean wage for All Occupations in Motor Vehicle and Motor Vehicle Parts and Supplies Merchant Wholesalers in the United States
+OEUN000000042340000000004,94470.0,423400,Annual mean wage for All Occupations in Professional and Commercial Equipment and Supplies Merchant Wholesalers in the United States
+OEUN000000042380000000004,72070.0,423800,"Annual mean wage for All Occupations in Machinery, Equipment, and Supplies Merchant Wholesalers in the United States"
+OEUN000000042382000000004,64260.0,423820,Annual mean wage for All Occupations in Farm and Garden Machinery and Equipment Merchant Wholesalers in the United States
+OEUN000000042400000000004,70210.0,424000,"Annual mean wage for All Occupations in Merchant Wholesalers, Nondurable Goods in the United States"
+OEUN00000004240A100000004,62360.0,4240A1,"Annual mean wage for All Occupations in Merchant Wholesalers, Nondurable Goods (4244 and 4248 only) in the United States"
+OEUN00000004240A200000004,100240.0,4240A2,"Annual mean wage for All Occupations in Merchant Wholesalers, Nondurable Goods (4242 and 4246 only) in the United States"
+OEUN00000004240A300000004,63330.0,4240A3,"Annual mean wage for All Occupations in Merchant Wholesalers, Nondurable Goods (4241, 4247, and 4249 only) in the United States"
+OEUN000000042430000000004,76460.0,424300,"Annual mean wage for All Occupations in Apparel, Piece Goods, and Notions Merchant Wholesalers in the United States"
+OEUN000000042450000000004,54440.0,424500,Annual mean wage for All Occupations in Farm Product Raw Material Merchant Wholesalers in the United States
+OEUN000000042500000000004,88150.0,425000,Annual mean wage for All Occupations in Wholesale Trade Agents and Brokers in the United States
+OEUN000000042510000000004,88150.0,425100,Annual mean wage for All Occupations in Wholesale Trade Agents and Brokers in the United States
+OEUN000000044--4600000004,43760.0,44--46,Annual mean wage for All Occupations in Sectors 44 and 45 - Retail Trade in the United States
+OEUN000000044100000000004,57980.0,441000,Annual mean wage for All Occupations in Motor Vehicle and Parts Dealers in the United States
+OEUN000000044110000000004,65130.0,441100,Annual mean wage for All Occupations in Automobile Dealers in the United States
+OEUN000000044120000000004,57670.0,441200,Annual mean wage for All Occupations in Other Motor Vehicle Dealers in the United States
+OEUN000000044130000000004,42410.0,441300,"Annual mean wage for All Occupations in Automotive Parts, Accessories, and Tire Retailers in the United States"
+OEUN000000044400000000004,44460.0,444000,Annual mean wage for All Occupations in Building Material and Garden Equipment and Supplies Dealers in the United States
+OEUN000000044410000000004,44840.0,444100,Annual mean wage for All Occupations in Building Material and Supplies Dealers in the United States
+OEUN000000044420000000004,42050.0,444200,Annual mean wage for All Occupations in Lawn and Garden Equipment and Supplies Retailers in the United States
+OEUN000000044500000000004,38530.0,445000,Annual mean wage for All Occupations in Food and Beverage Retailers in the United States
+OEUN00000004450A100000004,38520.0,4450A1,Annual mean wage for All Occupations in Food and Beverage Retailers (4451 and 4452 only) in the United States
+OEUN000000044530000000004,38770.0,445300,"Annual mean wage for All Occupations in Beer, Wine, and Liquor Retailers in the United States"
+OEUN000000044900000000004,49420.0,449000,"Annual mean wage for All Occupations in Furniture, Home Furnishings, Electronics, and Appliance Retailers in the United States"
+OEUN000000044910000000004,49680.0,449100,Annual mean wage for All Occupations in Furniture and Home Furnishings Retailers in the United States
+OEUN000000044920000000004,49140.0,449200,Annual mean wage for All Occupations in Electronics and Appliance Retailers in the United States
+OEUN000000045500000000004,39220.0,455000,Annual mean wage for All Occupations in General Merchandise Retailers in the United States
+OEUN000000045600000000004,54680.0,456000,Annual mean wage for All Occupations in Health and Personal Care Retailers in the United States
+OEUN000000045610000000004,54680.0,456100,Annual mean wage for All Occupations in Health and Personal Care Retailers in the United States
+OEUN000000045611000000004,58910.0,456110,Annual mean wage for All Occupations in Pharmacies and Drug Retailers in the United States
+OEUN000000045700000000004,35900.0,457000,Annual mean wage for All Occupations in Gasoline Stations and Fuel Dealers in the United States
+OEUN000000045710000000004,34120.0,457100,Annual mean wage for All Occupations in Gasoline Stations in the United States
+OEUN000000045720000000004,61010.0,457200,Annual mean wage for All Occupations in Fuel Dealers in the United States
+OEUN000000045800000000004,40660.0,458000,"Annual mean wage for All Occupations in Clothing, Clothing Accessories, Shoe, and Jewelry Retailers in the United States"
+OEUN000000045810000000004,39190.0,458100,Annual mean wage for All Occupations in Clothing and Clothing Accessories Retailers in the United States
+OEUN000000045820000000004,37700.0,458200,Annual mean wage for All Occupations in Shoe Retailers in the United States
+OEUN000000045830000000004,54880.0,458300,"Annual mean wage for All Occupations in Jewelry, Luggage, and Leather Goods Retailers in the United States"
+OEUN000000045900000000004,41980.0,459000,"Annual mean wage for All Occupations in Sporting Goods, Hobby, Musical Instrument, Book, and Miscellaneous Retailers in the United States"
+OEUN00000004590A100000004,38700.0,4590A1,Annual mean wage for All Occupations in Miscellaneous Store Retailers (4594 and 4595 only) in the United States
+OEUN000000045910000000004,40240.0,459100,"Annual mean wage for All Occupations in Sporting Goods, Hobby, and Musical Instrument Retailers in the United States"
+OEUN000000045911000000004,41160.0,459110,Annual mean wage for All Occupations in Sporting Goods Retailers in the United States
+OEUN000000045920000000004,37560.0,459200,Annual mean wage for All Occupations in Book Retailers and News Dealers in the United States
+OEUN000000045930000000004,38810.0,459300,Annual mean wage for All Occupations in Florists in the United States
+OEUN000000045990000000004,47440.0,459900,Annual mean wage for All Occupations in Other Miscellaneous Retailers in the United States
+OEUN000000048--5000000004,62460.0,48--50,Annual mean wage for All Occupations in Sectors 48 and 49 - Transportation and Warehousing in the United States
+OEUN000000048100000000004,108550.0,481000,Annual mean wage for All Occupations in Air Transportation in the United States
+OEUN000000048110000000004,108480.0,481100,Annual mean wage for All Occupations in Scheduled Air Transportation in the United States
+OEUN000000048120000000004,109180.0,481200,Annual mean wage for All Occupations in Nonscheduled Air Transportation in the United States
+OEUN000000048200000000004,81790.0,482000,Annual mean wage for All Occupations in Rail Transportation in the United States
+OEUN000000048210000000004,81790.0,482100,Annual mean wage for All Occupations in Rail Transportation in the United States
+OEUN000000048300000000004,82480.0,483000,Annual mean wage for All Occupations in Water Transportation in the United States
+OEUN000000048310000000004,81210.0,483100,"Annual mean wage for All Occupations in Deep Sea, Coastal, and Great Lakes Water Transportation in the United States"
+OEUN000000048320000000004,84260.0,483200,Annual mean wage for All Occupations in Inland Water Transportation in the United States
+OEUN000000048400000000004,60140.0,484000,Annual mean wage for All Occupations in Truck Transportation in the United States
+OEUN000000048500000000004,52730.0,485000,Annual mean wage for All Occupations in Transit and Ground Passenger Transportation in the United States
+OEUN000000048510000000004,57020.0,485100,Annual mean wage for All Occupations in Urban Transit Systems in the United States
+OEUN000000048520000000004,50580.0,485200,Annual mean wage for All Occupations in Interurban and Rural Bus Transportation in the United States
+OEUN000000048530000000004,71450.0,485300,Annual mean wage for All Occupations in Taxi and Limousine Service in the United States
+OEUN000000048540000000004,49610.0,485400,Annual mean wage for All Occupations in School and Employee Bus Transportation in the United States
+OEUN000000048550000000004,53680.0,485500,Annual mean wage for All Occupations in Charter Bus Industry in the United States
+OEUN000000048590000000004,44510.0,485900,Annual mean wage for All Occupations in Other Transit and Ground Passenger Transportation in the United States
+OEUN000000048600000000004,100840.0,486000,Annual mean wage for All Occupations in Pipeline Transportation in the United States
+OEUN000000048610000000004,108680.0,486100,Annual mean wage for All Occupations in Pipeline Transportation of Crude Oil in the United States
+OEUN000000048620000000004,99490.0,486200,Annual mean wage for All Occupations in Pipeline Transportation of Natural Gas in the United States
+OEUN000000048690000000004,94530.0,486900,Annual mean wage for All Occupations in Other Pipeline Transportation in the United States
+OEUN000000048700000000004,53560.0,487000,Annual mean wage for All Occupations in Scenic and Sightseeing Transportation in the United States
+OEUN000000048710000000004,49510.0,487100,"Annual mean wage for All Occupations in Scenic and Sightseeing Transportation, Land in the United States"
+OEUN000000048720000000004,54620.0,487200,"Annual mean wage for All Occupations in Scenic and Sightseeing Transportation, Water in the United States"
+OEUN000000048790000000004,63350.0,487900,"Annual mean wage for All Occupations in Scenic and Sightseeing Transportation, Other in the United States"
+OEUN000000048800000000004,64700.0,488000,Annual mean wage for All Occupations in Support Activities for Transportation in the United States
+OEUN000000048810000000004,61400.0,488100,Annual mean wage for All Occupations in Support Activities for Air Transportation in the United States
+OEUN000000048820000000004,59730.0,488200,Annual mean wage for All Occupations in Support Activities for Rail Transportation in the United States
+OEUN000000048830000000004,82020.0,488300,Annual mean wage for All Occupations in Support Activities for Water Transportation in the United States
+OEUN000000048840000000004,52750.0,488400,Annual mean wage for All Occupations in Support Activities for Road Transportation in the United States
+OEUN000000048850000000004,69540.0,488500,Annual mean wage for All Occupations in Freight Transportation Arrangement in the United States
+OEUN000000048890000000004,52690.0,488900,Annual mean wage for All Occupations in Other Support Activities for Transportation in the United States
+OEUN000000049100000000004,63550.0,491000,Annual mean wage for All Occupations in Postal Service (Federal Government) in the United States
+OEUN000000049110000000004,63550.0,491100,Annual mean wage for All Occupations in Postal Service (Federal Government) in the United States
+OEUN000000049200000000004,55450.0,492000,Annual mean wage for All Occupations in Couriers and Messengers in the United States
+OEUN000000049210000000004,57130.0,492100,Annual mean wage for All Occupations in Couriers and Express Delivery Services in the United States
+OEUN000000049220000000004,46920.0,492200,Annual mean wage for All Occupations in Local Messengers and Local Delivery in the United States
+OEUN000000049300000000004,52540.0,493000,Annual mean wage for All Occupations in Warehousing and Storage in the United States
+OEUN000000049310000000004,52540.0,493100,Annual mean wage for All Occupations in Warehousing and Storage in the United States
+OEUN000000051--5200000004,112770.0,51--52,Annual mean wage for All Occupations in Sector 51 - Information in the United States
+OEUN000000051200000000004,89890.0,512000,Annual mean wage for All Occupations in Motion Picture and Sound Recording Industries in the United States
+OEUN000000051210000000004,89390.0,512100,Annual mean wage for All Occupations in Motion Picture and Video Industries in the United States
+OEUN000000051213000000004,33640.0,512130,Annual mean wage for All Occupations in Motion Picture and Video Exhibition in the United States
+OEUN000000051220000000004,98280.0,512200,Annual mean wage for All Occupations in Sound Recording Industries in the United States
+OEUN000000051300000000004,122840.0,513000,Annual mean wage for All Occupations in Publishing Industries in the United States
+OEUN000000051310000000004,87400.0,513100,"Annual mean wage for All Occupations in Newspaper, Periodical, Book, and Directory Publishers in the United States"
+OEUN000000051311000000004,65370.0,513110,Annual mean wage for All Occupations in Newspaper Publishers in the United States
+OEUN000000051320000000004,137760.0,513200,Annual mean wage for All Occupations in Software Publishers in the United States
+OEUN000000051600000000004,116960.0,516000,Annual mean wage for All Occupations in Broadcasting and Content Providers in the United States
+OEUN000000051610000000004,78020.0,516100,Annual mean wage for All Occupations in Radio and Television Broadcasting Stations in the United States
+OEUN000000051611000000004,68900.0,516110,Annual mean wage for All Occupations in Radio Broadcasting Stations in the United States
+OEUN000000051612000000004,85240.0,516120,Annual mean wage for All Occupations in Television Broadcasting Stations in the United States
+OEUN000000051620000000004,138030.0,516200,"Annual mean wage for All Occupations in Media Streaming Distribution Services, Social Networks, and Other Media Networks and Content Providers in the United States"
+OEUN000000051700000000004,87960.0,517000,Annual mean wage for All Occupations in Telecommunications in the United States
+OEUN000000051800000000004,122480.0,518000,"Annual mean wage for All Occupations in Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services in the United States"
+OEUN000000051820000000004,122480.0,518200,"Annual mean wage for All Occupations in Computing Infrastructure Providers, Data Processing, Web Hosting, and Related Services in the United States"
+OEUN000000051900000000004,161650.0,519000,"Annual mean wage for All Occupations in Web Search Portals, Libraries, Archives, and Other Information Services in the United States"
+OEUN000000051920000000004,161650.0,519200,"Annual mean wage for All Occupations in Web Search Portals, Libraries, Archives, and Other Information Services in the United States"
+OEUN000000052--5300000004,98760.0,52--53,Annual mean wage for All Occupations in Sector 52 - Finance and Insurance in the United States
+OEUN000000052100000000004,138380.0,521000,Annual mean wage for All Occupations in Monetary Authorities-Central Bank in the United States
+OEUN000000052110000000004,138380.0,521100,Annual mean wage for All Occupations in Monetary Authorities-Central Bank in the United States
+OEUN000000052200000000004,86330.0,522000,Annual mean wage for All Occupations in Credit Intermediation and Related Activities in the United States
+OEUN00000005220A100000004,86320.0,5220A1,Annual mean wage for All Occupations in Credit Intermediation and Related Activities (5221 and 5223 only) in the United States
+OEUN000000052220000000004,86360.0,522200,Annual mean wage for All Occupations in Nondepository Credit Intermediation in the United States
+OEUN000000052229000000004,82750.0,522290,Annual mean wage for All Occupations in Other Nondepository Credit Intermediation in the United States
+OEUN000000052300000000004,150000.0,523000,"Annual mean wage for All Occupations in Securities, Commodity Contracts, and Other Financial Investments and Related Activities in the United States"
+OEUN000000052400000000004,89000.0,524000,Annual mean wage for All Occupations in Insurance Carriers and Related Activities in the United States
+OEUN000000052410000000004,96000.0,524100,Annual mean wage for All Occupations in Insurance Carriers in the United States
+OEUN000000052411400000004,92690.0,524114,Annual mean wage for All Occupations in Direct Health and Medical Insurance Carriers in the United States
+OEUN000000052412000000004,94650.0,524120,"Annual mean wage for All Occupations in Direct Insurance (except Life, Health, and Medical) Carriers in the United States"
+OEUN000000052420000000004,82860.0,524200,"Annual mean wage for All Occupations in Agencies, Brokerages, and Other Insurance Related Activities in the United States"
+OEUN000000052421000000004,82990.0,524210,Annual mean wage for All Occupations in Insurance Agencies and Brokerages in the United States
+OEUN000000052429000000004,82530.0,524290,Annual mean wage for All Occupations in Other Insurance Related Activities in the United States
+OEUN000000052500000000004,116220.0,525000,"Annual mean wage for All Occupations in Funds, Trusts, and Other Financial Vehicles in the United States"
+OEUN000000052510000000004,93240.0,525100,Annual mean wage for All Occupations in Insurance and Employee Benefit Funds in the United States
+OEUN000000052590000000004,131360.0,525900,Annual mean wage for All Occupations in Other Investment Pools and Funds in the United States
+OEUN000000053--5400000004,64790.0,53--54,Annual mean wage for All Occupations in Sector 53 - Real Estate and Rental and Leasing in the United States
+OEUN000000053100000000004,67240.0,531000,Annual mean wage for All Occupations in Real Estate in the United States
+OEUN000000053200000000004,55430.0,532000,Annual mean wage for All Occupations in Rental and Leasing Services in the United States
+OEUN00000005320A100000004,59730.0,5320A1,"Annual mean wage for All Occupations in Rental and Leasing Services (5322, 5323, and 5324 only) in the United States"
+OEUN000000053210000000004,48160.0,532100,Annual mean wage for All Occupations in Automotive Equipment Rental and Leasing in the United States
+OEUN000000053300000000004,102590.0,533000,Annual mean wage for All Occupations in Lessors of Nonfinancial Intangible Assets (except Copyrighted Works) in the United States
+OEUN000000053310000000004,102590.0,533100,Annual mean wage for All Occupations in Lessors of Nonfinancial Intangible Assets (except Copyrighted Works) in the United States
+OEUN000000054--5500000004,106030.0,54--55,"Annual mean wage for All Occupations in Sector 54 - Professional, Scientific, and Technical Services in the United States"
+OEUN000000054100000000004,106030.0,541000,"Annual mean wage for All Occupations in Professional, Scientific, and Technical Services in the United States"
+OEUN000000054110000000004,115640.0,541100,Annual mean wage for All Occupations in Legal Services in the United States
+OEUN000000054120000000004,89910.0,541200,"Annual mean wage for All Occupations in Accounting, Tax Preparation, Bookkeeping, and Payroll Services in the United States"
+OEUN000000054130000000004,99130.0,541300,"Annual mean wage for All Occupations in Architectural, Engineering, and Related Services in the United States"
+OEUN000000054133000000004,106330.0,541330,Annual mean wage for All Occupations in Engineering Services in the United States
+OEUN000000054138000000004,78000.0,541380,Annual mean wage for All Occupations in Testing Laboratories and Services in the United States
+OEUN000000054140000000004,82960.0,541400,Annual mean wage for All Occupations in Specialized Design Services in the United States
+OEUN000000054150000000004,120610.0,541500,Annual mean wage for All Occupations in Computer Systems Design and Related Services in the United States
+OEUN000000054160000000004,104630.0,541600,"Annual mean wage for All Occupations in Management, Scientific, and Technical Consulting Services in the United States"
+OEUN000000054170000000004,132440.0,541700,Annual mean wage for All Occupations in Scientific Research and Development Services in the United States
+OEUN000000054171000000004,135040.0,541710,"Annual mean wage for All Occupations in Research and Development in the Physical, Engineering, and Life Sciences in the United States"
+OEUN000000054172000000004,97310.0,541720,Annual mean wage for All Occupations in Research and Development in the Social Sciences and Humanities in the United States
+OEUN000000054180000000004,90470.0,541800,"Annual mean wage for All Occupations in Advertising, Public Relations, and Related Services in the United States"
+OEUN000000054190000000004,72580.0,541900,"Annual mean wage for All Occupations in Other Professional, Scientific, and Technical Services in the United States"
+OEUN000000054192000000004,53150.0,541920,Annual mean wage for All Occupations in Photographic Services in the United States
+OEUN000000054194000000004,59140.0,541940,Annual mean wage for All Occupations in Veterinary Services in the United States
+OEUN000000055--5600000004,113450.0,55--56,Annual mean wage for All Occupations in Sector 55 - Management of Companies and Enterprises in the United States
+OEUN000000055100000000004,113450.0,551000,Annual mean wage for All Occupations in Management of Companies and Enterprises in the United States
+OEUN000000055110000000004,113450.0,551100,Annual mean wage for All Occupations in Management of Companies and Enterprises in the United States
+OEUN000000056--5700000004,55160.0,56--57,Annual mean wage for All Occupations in Sector 56- Administrative and Support and Waste Management and Remediation Services in the United States
+OEUN000000056100000000004,54790.0,561000,Annual mean wage for All Occupations in Administrative and Support Services in the United States
+OEUN000000056110000000004,92310.0,561100,Annual mean wage for All Occupations in Office Administrative Services in the United States
+OEUN000000056120000000004,56240.0,561200,Annual mean wage for All Occupations in Facilities Support Services in the United States
+OEUN000000056130000000004,57520.0,561300,Annual mean wage for All Occupations in Employment Services in the United States
+OEUN000000056132000000004,53940.0,561320,Annual mean wage for All Occupations in Temporary Help Services in the United States
+OEUN000000056140000000004,52210.0,561400,Annual mean wage for All Occupations in Business Support Services in the United States
+OEUN000000056150000000004,69460.0,561500,Annual mean wage for All Occupations in Travel Arrangement and Reservation Services in the United States
+OEUN000000056160000000004,47370.0,561600,Annual mean wage for All Occupations in Investigation and Security Services in the United States
+OEUN000000056161000000004,44180.0,561610,"Annual mean wage for All Occupations in Investigation, Guard, and Armored Car Services in the United States"
+OEUN000000056162000000004,64900.0,561620,Annual mean wage for All Occupations in Security Systems Services in the United States
+OEUN000000056170000000004,44050.0,561700,Annual mean wage for All Occupations in Services to Buildings and Dwellings in the United States
+OEUN000000056171000000004,50810.0,561710,Annual mean wage for All Occupations in Exterminating and Pest Control Services in the United States
+OEUN000000056173000000004,48600.0,561730,Annual mean wage for All Occupations in Landscaping Services in the United States
+OEUN000000056190000000004,55940.0,561900,Annual mean wage for All Occupations in Other Support Services in the United States
+OEUN000000056200000000004,61550.0,562000,Annual mean wage for All Occupations in Waste Management and Remediation Services in the United States
+OEUN000000056210000000004,57050.0,562100,Annual mean wage for All Occupations in Waste Collection in the United States
+OEUN000000056220000000004,67830.0,562200,Annual mean wage for All Occupations in Waste Treatment and Disposal in the United States
+OEUN000000056290000000004,63240.0,562900,Annual mean wage for All Occupations in Remediation and Other Waste Management Services in the United States
+OEUN000000061--6200000004,67700.0,61--62,Annual mean wage for All Occupations in Sector 61 - Educational Services in the United States
+OEUN000000061100000000004,67700.0,611000,Annual mean wage for All Occupations in Educational Services in the United States
+OEUN000000061100200000004,78100.0,611002,"Annual mean wage for All Occupations in Educational Services, State Government Owned in the United States"
+OEUN000000061100300000004,63790.0,611003,"Annual mean wage for All Occupations in Educational Services, Local Government Owned in the United States"
+OEUN000000061100500000004,71090.0,611005,"Annual mean wage for All Occupations in Educational Services, Privately Owned in the United States"
+OEUN000000061110000000004,61980.0,611100,Annual mean wage for All Occupations in Elementary and Secondary Schools in the United States
+OEUN000000061110200000004,65450.0,611102,"Annual mean wage for All Occupations in Elementary and Secondary Schools, State Government Owned in the United States"
+OEUN000000061110300000004,62290.0,611103,"Annual mean wage for All Occupations in Elementary and Secondary Schools, Local Government Owned in the United States"
+OEUN000000061110500000004,59340.0,611105,"Annual mean wage for All Occupations in Elementary and Secondary Schools, Privately Owned in the United States"
+OEUN000000061120000000004,77530.0,611200,Annual mean wage for All Occupations in Junior Colleges in the United States
+OEUN000000061120200000004,62320.0,611202,"Annual mean wage for All Occupations in Junior Colleges, State Government Owned in the United States"
+OEUN000000061120300000004,86010.0,611203,"Annual mean wage for All Occupations in Junior Colleges, Local Government Owned in the United States"
+OEUN000000061120500000004,65560.0,611205,"Annual mean wage for All Occupations in Junior Colleges, Privately Owned in the United States"
+OEUN000000061130000000004,83210.0,611300,"Annual mean wage for All Occupations in Colleges, Universities, and Professional Schools in the United States"
+OEUN000000061130200000004,80590.0,611302,"Annual mean wage for All Occupations in Colleges, Universities, and Professional Schools, State Government Owned in the United States"
+OEUN000000061130300000004,97920.0,611303,"Annual mean wage for All Occupations in Colleges, Universities, and Professional Schools, Local Government Owned in the United States"
+OEUN000000061130500000004,85910.0,611305,"Annual mean wage for All Occupations in Colleges, Universities, and Professional Schools, Privately Owned in the United States"
+OEUN000000061140000000004,87120.0,611400,Annual mean wage for All Occupations in Business Schools and Computer and Management Training in the United States
+OEUN000000061140500000004,87940.0,611405,"Annual mean wage for All Occupations in Business Schools and Computer and Management Training, Privately Owned in the United States"
+OEUN000000061150000000004,70410.0,611500,Annual mean wage for All Occupations in Technical and Trade Schools in the United States
+OEUN000000061150200000004,57170.0,611502,"Annual mean wage for All Occupations in Technical and Trade Schools, State Government Owned in the United States"
+OEUN000000061150300000004,66650.0,611503,"Annual mean wage for All Occupations in Technical and Trade Schools, Local Government Owned in the United States"
+OEUN000000061150500000004,71870.0,611505,"Annual mean wage for All Occupations in Technical and Trade Schools, Privately Owned in the United States"
+OEUN000000061160000000004,52380.0,611600,Annual mean wage for All Occupations in Other Schools and Instruction in the United States
+OEUN000000061160300000004,52980.0,611603,"Annual mean wage for All Occupations in Other Schools and Instruction, Local Government Owned in the United States"
+OEUN000000061160500000004,52370.0,611605,"Annual mean wage for All Occupations in Other Schools and Instruction, Privately Owned in the United States"
+OEUN000000061170000000004,73260.0,611700,Annual mean wage for All Occupations in Educational Support Services in the United States
+OEUN000000061170300000004,66610.0,611703,"Annual mean wage for All Occupations in Educational Support Services, Local Government Owned in the United States"
+OEUN000000061170500000004,74680.0,611705,"Annual mean wage for All Occupations in Educational Support Services, Privately Owned in the United States"
+OEUN000000062--6300000004,69800.0,62--63,Annual mean wage for All Occupations in Sector 62 - Health Care and Social Assistance in the United States
+OEUN000000062100000000004,80020.0,621000,Annual mean wage for All Occupations in Ambulatory Health Care Services in the United States
+OEUN000000062110000000004,103470.0,621100,Annual mean wage for All Occupations in Offices of Physicians in the United States
+OEUN000000062120000000004,77210.0,621200,Annual mean wage for All Occupations in Offices of Dentists in the United States
+OEUN000000062130000000004,69900.0,621300,Annual mean wage for All Occupations in Offices of Other Health Practitioners in the United States
+OEUN000000062131000000004,56510.0,621310,Annual mean wage for All Occupations in Offices of Chiropractors in the United States
+OEUN000000062132000000004,59380.0,621320,Annual mean wage for All Occupations in Offices of Optometrists in the United States
+OEUN000000062133000000004,75110.0,621330,Annual mean wage for All Occupations in Offices of Mental Health Practitioners (except Physicians) in the United States
+OEUN000000062134000000004,73020.0,621340,"Annual mean wage for All Occupations in Offices of Physical, Occupational and Speech Therapists, and Audiologists in the United States"
+OEUN000000062139000000004,74270.0,621390,Annual mean wage for All Occupations in Offices of All Other Health Practitioners in the United States
+OEUN000000062140000000004,84710.0,621400,Annual mean wage for All Occupations in Outpatient Care Centers in the United States
+OEUN000000062142000000004,65710.0,621420,Annual mean wage for All Occupations in Outpatient Mental Health and Substance Abuse Centers in the United States
+OEUN000000062150000000004,76710.0,621500,Annual mean wage for All Occupations in Medical and Diagnostic Laboratories in the United States
+OEUN000000062160000000004,50540.0,621600,Annual mean wage for All Occupations in Home Health Care Services in the United States
+OEUN000000062190000000004,62070.0,621900,Annual mean wage for All Occupations in Other Ambulatory Health Care Services in the United States
+OEUN000000062191000000004,52240.0,621910,Annual mean wage for All Occupations in Ambulance Services in the United States
+OEUN000000062199000000004,71100.0,621990,Annual mean wage for All Occupations in All Other Ambulatory Health Care Services in the United States
+OEUN000000062200000000004,86120.0,622000,Annual mean wage for All Occupations in Hospitals in the United States
+OEUN000000062200200000004,87240.0,622002,"Annual mean wage for All Occupations in Hospitals, State Government Owned in the United States"
+OEUN000000062200300000004,82090.0,622003,"Annual mean wage for All Occupations in Hospitals, Local Government Owned in the United States"
+OEUN000000062200500000004,86550.0,622005,"Annual mean wage for All Occupations in Hospitals, Privately Owned in the United States"
+OEUN000000062210000000004,86550.0,622100,Annual mean wage for All Occupations in General Medical and Surgical Hospitals in the United States
+OEUN000000062210200000004,90320.0,622102,"Annual mean wage for All Occupations in General Medical and Surgical Hospitals, State Government Owned in the United States"
+OEUN000000062210300000004,82140.0,622103,"Annual mean wage for All Occupations in General Medical and Surgical Hospitals, Local Government Owned in the United States"
+OEUN000000062210500000004,86940.0,622105,"Annual mean wage for All Occupations in General Medical and Surgical Hospitals, Privately Owned in the United States"
+OEUN000000062220000000004,70110.0,622200,Annual mean wage for All Occupations in Psychiatric and Substance Abuse Hospitals in the United States
+OEUN000000062220200000004,72750.0,622202,"Annual mean wage for All Occupations in Psychiatric and Substance Abuse Hospitals, State Government Owned in the United States"
+OEUN000000062220500000004,67990.0,622205,"Annual mean wage for All Occupations in Psychiatric and Substance Abuse Hospitals, Privately Owned in the United States"
+OEUN000000062230000000004,90390.0,622300,Annual mean wage for All Occupations in Specialty (except Psychiatric and Substance Abuse) Hospitals in the United States
+OEUN000000062230200000004,105490.0,622302,"Annual mean wage for All Occupations in Specialty (except Psychiatric and Substance Abuse) Hospitals, State Government Owned in the United States"
+OEUN000000062230500000004,88220.0,622305,"Annual mean wage for All Occupations in Specialty (except Psychiatric and Substance Abuse) Hospitals, Privately Owned in the United States"
+OEUN000000062300000000004,49010.0,623000,Annual mean wage for All Occupations in Nursing and Residential Care Facilities in the United States
+OEUN000000062310000000004,52820.0,623100,Annual mean wage for All Occupations in Nursing Care Facilities (Skilled Nursing Facilities) in the United States
+OEUN000000062320000000004,47350.0,623200,"Annual mean wage for All Occupations in Residential Intellectual and Developmental Disability, Mental Health, and Substance Abuse Facilities in the United States"
+OEUN000000062321000000004,42650.0,623210,Annual mean wage for All Occupations in Residential Intellectual and Developmental Disability Facilities in the United States
+OEUN000000062322000000004,54560.0,623220,Annual mean wage for All Occupations in Residential Mental Health and Substance Abuse Facilities in the United States
+OEUN000000062330000000004,44510.0,623300,Annual mean wage for All Occupations in Continuing Care Retirement Communities and Assisted Living Facilities for the Elderly in the United States
+OEUN000000062390000000004,48230.0,623900,Annual mean wage for All Occupations in Other Residential Care Facilities in the United States
+OEUN000000062400000000004,42550.0,624000,Annual mean wage for All Occupations in Social Assistance in the United States
+OEUN000000062410000000004,42550.0,624100,Annual mean wage for All Occupations in Individual and Family Services in the United States
+OEUN000000062412000000004,37950.0,624120,Annual mean wage for All Occupations in Services for the Elderly and Persons with Disabilities in the United States
+OEUN000000062420000000004,55370.0,624200,"Annual mean wage for All Occupations in Community Food and Housing, and Emergency and Other Relief Services in the United States"
+OEUN000000062430000000004,44790.0,624300,Annual mean wage for All Occupations in Vocational Rehabilitation Services in the United States
+OEUN000000062440000000004,38970.0,624400,Annual mean wage for All Occupations in Child Care Services in the United States
+OEUN000000071--7200000004,51540.0,71--72,"Annual mean wage for All Occupations in Sector 71 - Arts, Entertainment, and Recreation in the United States"
+OEUN000000071100000000004,76280.0,711000,"Annual mean wage for All Occupations in Performing Arts, Spectator Sports, and Related Industries in the United States"
+OEUN000000071110000000004,73690.0,711100,Annual mean wage for All Occupations in Performing Arts Companies in the United States
+OEUN000000071111000000004,63690.0,711110,Annual mean wage for All Occupations in Theater Companies and Dinner Theaters in the United States
+OEUN000000071120000000004,84490.0,711200,Annual mean wage for All Occupations in Spectator Sports in the United States
+OEUN000000071130000000004,58890.0,711300,"Annual mean wage for All Occupations in Promoters of Performing Arts, Sports, and Similar Events in the United States"
+OEUN000000071140000000004,128320.0,711400,"Annual mean wage for All Occupations in Agents and Managers for Artists, Athletes, Entertainers, and Other Public Figures in the United States"
+OEUN000000071150000000004,86520.0,711500,"Annual mean wage for All Occupations in Independent Artists, Writers, and Performers in the United States"
+OEUN000000071200000000004,54020.0,712000,"Annual mean wage for All Occupations in Museums, Historical Sites, and Similar Institutions in the United States"
+OEUN000000071210000000004,54020.0,712100,"Annual mean wage for All Occupations in Museums, Historical Sites, and Similar Institutions in the United States"
+OEUN000000071300000000004,43700.0,713000,"Annual mean wage for All Occupations in Amusement, Gambling, and Recreation Industries in the United States"
+OEUN000000071310000000004,40040.0,713100,Annual mean wage for All Occupations in Amusement Parks and Arcades in the United States
+OEUN000000071320000000004,48540.0,713200,Annual mean wage for All Occupations in Gambling Industries in the United States
+OEUN000000071390000000004,43480.0,713900,Annual mean wage for All Occupations in Other Amusement and Recreation Industries in the United States
+OEUN000000071394000000004,44000.0,713940,Annual mean wage for All Occupations in Fitness and Recreational Sports Centers in the United States
+OEUN000000072--7300000004,37960.0,72--73,Annual mean wage for All Occupations in Sector 72 - Accommodation and Food Services in the United States
+OEUN000000072100000000004,44700.0,721000,Annual mean wage for All Occupations in Accommodation in the United States
+OEUN000000072110000000004,44720.0,721100,Annual mean wage for All Occupations in Traveler Accommodation in the United States
+OEUN000000072112000000004,46240.0,721120,Annual mean wage for All Occupations in Casino Hotels in the United States
+OEUN000000072120000000004,44470.0,721200,Annual mean wage for All Occupations in RV (Recreational Vehicle) Parks and Recreational Camps in the United States
+OEUN000000072130000000004,41350.0,721300,"Annual mean wage for All Occupations in Rooming and Boarding Houses, Dormitories, and Workers' Camps in the United States"
+OEUN000000072200000000004,36860.0,722000,Annual mean wage for All Occupations in Food Services and Drinking Places in the United States
+OEUN000000072230000000004,42360.0,722300,Annual mean wage for All Occupations in Special Food Services in the United States
+OEUN000000072240000000004,39560.0,722400,Annual mean wage for All Occupations in Drinking Places (Alcoholic Beverages) in the United States
+OEUN000000072250000000004,36370.0,722500,Annual mean wage for All Occupations in Restaurants and Other Eating Places in the United States
+OEUN000000072251100000004,39280.0,722511,Annual mean wage for All Occupations in Full-Service Restaurants in the United States
+OEUN000000081--8200000004,55940.0,81--82,Annual mean wage for All Occupations in Sector 81 - Other Services (except Public Administration) in the United States
+OEUN000000081100000000004,55550.0,811000,Annual mean wage for All Occupations in Repair and Maintenance in the United States
+OEUN000000081110000000004,52140.0,811100,Annual mean wage for All Occupations in Automotive Repair and Maintenance in the United States
+OEUN000000081111000000004,56210.0,811110,Annual mean wage for All Occupations in Automotive Mechanical and Electrical Repair and Maintenance in the United States
+OEUN000000081112000000004,59400.0,811120,"Annual mean wage for All Occupations in Automotive Body, Paint, Interior, and Glass Repair in the United States"
+OEUN000000081119000000004,38480.0,811190,Annual mean wage for All Occupations in Other Automotive Repair and Maintenance in the United States
+OEUN000000081120000000004,64670.0,811200,Annual mean wage for All Occupations in Electronic and Precision Equipment Repair and Maintenance in the United States
+OEUN000000081130000000004,67580.0,811300,Annual mean wage for All Occupations in Commercial and Industrial Machinery and Equipment (except Automotive and Electronic) Repair and Maintenance in the United States
+OEUN000000081140000000004,51970.0,811400,Annual mean wage for All Occupations in Personal and Household Goods Repair and Maintenance in the United States
+OEUN000000081200000000004,43780.0,812000,Annual mean wage for All Occupations in Personal and Laundry Services in the United States
+OEUN000000081210000000004,44010.0,812100,Annual mean wage for All Occupations in Personal Care Services in the United States
+OEUN000000081220000000004,50300.0,812200,Annual mean wage for All Occupations in Death Care Services in the United States
+OEUN000000081230000000004,41510.0,812300,Annual mean wage for All Occupations in Drycleaning and Laundry Services in the United States
+OEUN000000081290000000004,42650.0,812900,Annual mean wage for All Occupations in Other Personal Services in the United States
+OEUN000000081300000000004,69790.0,813000,"Annual mean wage for All Occupations in Religious, Grantmaking, Civic, Professional, and Similar Organizations in the United States"
+OEUN000000081310000000004,59450.0,813100,Annual mean wage for All Occupations in Religious Organizations in the United States
+OEUN000000081320000000004,93910.0,813200,Annual mean wage for All Occupations in Grantmaking and Giving Services in the United States
+OEUN000000081330000000004,69660.0,813300,Annual mean wage for All Occupations in Social Advocacy Organizations in the United States
+OEUN000000081340000000004,44680.0,813400,Annual mean wage for All Occupations in Civic and Social Organizations in the United States
+OEUN000000081390000000004,85820.0,813900,"Annual mean wage for All Occupations in Business, Professional, Labor, Political, and Similar Organizations in the United States"
+OEUN000000081393000000004,91380.0,813930,Annual mean wage for All Occupations in Labor Unions and Similar Labor Organizations in the United States
+OEUN000000099-10000000004,78410.0,99-100,"Annual mean wage for All Occupations in Sector 99 - Federal, State, and Local Government, excluding State/Local Government Schools/Hospitals and the U.S. Postal Service (OEWS Designation) in the United States"
+OEUN000000099900000000004,78410.0,999000,"Annual mean wage for All Occupations in Federal, State, and Local Government, excluding State and Local Government Schools and Hospitals and the U.S. Postal Service (OEWS Designation) in the United States"
+OEUN000000099900100000004,72540.0,999001,"Annual mean wage for All Occupations in Federal, State, and Local Government, including State and Local Government Schools and Hospitals and the U.S. Postal Service (OEWS Designation) in the United States"
+OEUN000000099910000000004,107530.0,999100,Annual mean wage for All Occupations in Federal Executive Branch (OEWS Designation) in the United States
+OEUN000000099910100000004,97710.0,999101,"Annual mean wage for All Occupations in Federal Government, including the U.S. Postal Service (OEWS Designation) in the United States"
+OEUN000000099920000000004,72560.0,999200,"Annual mean wage for All Occupations in State Government, excluding Schools and Hospitals (OEWS Designation) in the United States"
+OEUN000000099920100000004,76360.0,999201,"Annual mean wage for All Occupations in State Government, including Schools and Hospitals (OEWS Designation) in the United States"
+OEUN000000099930000000004,69280.0,999300,"Annual mean wage for All Occupations in Local Government, excluding Schools and Hospitals (OEWS Designation) in the United States"
+OEUN000000099930100000004,66520.0,999301,"Annual mean wage for All Occupations in Local Government, including Schools and Hospitals (OEWS Designation) in the United States"

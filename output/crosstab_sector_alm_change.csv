@@ -1,0 +1,24 @@
+Sector,NRC-A,NRC-I,NRM,RC,RM,TOTAL
+Transportation & Logistics,0,0,0,0,-48645,-48645
+Professional & Business Services,1508,0,0,2340,0,3848
+Healthcare & Social Assistance,0,-4104,0,-19,0,-4123
+Retail Trade,0,0,0,-910,0,-910
+Finance & Insurance,0,0,0,266,0,266
+Hospitality & Food Service,0,0,-1983,0,0,-1983
+Personal Services & Repair,0,0,210,-113,0,97
+Real Estate,0,501,0,131,0,632
+Wholesale Trade,0,0,0,138,0,138
+Government & Non-profit,0,-552,0,0,0,-552
+Manufacturing — Food & Beverage,0,0,0,-32,-367,-399
+Manufacturing — Metals & Machinery,0,0,0,164,573,737
+Education,0,-671,0,-108,0,-779
+Manufacturing — Vehicles & Other Durable,0,0,0,-114,20,-94
+"Arts, Entertainment & Recreation",0,0,-454,67,0,-387
+Information & Technology,49,0,0,0,0,49
+Construction,0,0,-9,-7,0,-16
+Agriculture & Natural Resources,0,0,-449,0,0,-449
+Mining & Extraction,0,0,0,3,246,249
+Manufacturing — Electronics & Tech,0,0,0,7,-3,4
+Energy & Utilities,0,0,0,-3,97,94
+Manufacturing — Chemicals & Pharma,0,0,0,55,3,58
+Manufacturing — Textiles & Apparel,0,0,0,-33,-31,-64

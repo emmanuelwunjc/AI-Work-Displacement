@@ -1,0 +1,36 @@
+Sector,Is_Cognitive,Emp,Chg,N
+Agriculture & Natural Resources,False,45382.1,-448.8,25
+"Arts, Entertainment & Recreation",False,52532.5,-454.0,8
+"Arts, Entertainment & Recreation",True,14425.6,66.8,2
+Construction,False,50111.0,-8.9,10
+Construction,True,584.4,-6.9,1
+Education,True,77465.2,-779.0,5
+Energy & Utilities,False,15573.5,97.3,11
+Energy & Utilities,True,940.0,-3.0,1
+Finance & Insurance,True,277093.8,266.4,8
+Government & Non-profit,True,96683.2,-551.5,10
+Healthcare & Social Assistance,True,354930.3,-4123.4,11
+Hospitality & Food Service,False,223371.5,-1983.2,4
+Information & Technology,True,55045.4,49.1,12
+Manufacturing — Chemicals & Pharma,False,8430.4,2.7,18
+Manufacturing — Chemicals & Pharma,True,6790.1,54.9,14
+Manufacturing — Electronics & Tech,False,15866.8,-2.8,21
+Manufacturing — Electronics & Tech,True,817.2,6.6,17
+Manufacturing — Food & Beverage,False,79932.6,-367.4,29
+Manufacturing — Food & Beverage,True,2794.4,-32.3,8
+Manufacturing — Metals & Machinery,False,64497.2,573.2,42
+Manufacturing — Metals & Machinery,True,14207.0,164.0,22
+Manufacturing — Textiles & Apparel,False,3711.8,-31.3,18
+Manufacturing — Textiles & Apparel,True,3742.1,-32.6,4
+Manufacturing — Vehicles & Other Durable,False,28860.8,19.7,57
+Manufacturing — Vehicles & Other Durable,True,38202.9,-114.0,44
+Mining & Extraction,False,18230.2,245.5,13
+Mining & Extraction,True,300.0,3.2,4
+Personal Services & Repair,False,205852.5,209.8,8
+Personal Services & Repair,True,10525.1,-113.4,2
+Professional & Business Services,True,578961.2,3847.9,26
+Real Estate,True,179610.6,632.6,4
+Retail Trade,True,328029.2,-910.2,13
+Transportation & Logistics,False,3631887.2,-48645.2,9
+Transportation & Logistics,True,38.1,-0.4,1
+Wholesale Trade,True,100575.8,138.2,23

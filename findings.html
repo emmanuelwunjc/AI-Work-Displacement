@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI & Labor Displacement — Key Findings & Dashboard Roadmap</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg2: #181c27;
+    --bg3: #1e2335;
+    --border: #2a3050;
+    --text: #e8ecf4;
+    --muted: #8892aa;
+    --accent: #4f8ef7;
+    --accent2: #7c5ef7;
+    --red: #f7596a;
+    --green: #3dd68c;
+    --yellow: #f7c948;
+    --radius: 12px;
+    --font: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,17,23,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 32px; height: 52px;
+  }
+  nav .logo { font-weight: 700; font-size: 14px; color: var(--accent); margin-right: 24px; letter-spacing: .5px; }
+  nav a {
+    color: var(--muted); text-decoration: none; font-size: 13px;
+    padding: 4px 10px; border-radius: 6px; transition: all .2s;
+  }
+  nav a:hover { color: var(--text); background: var(--bg3); }
+
+  /* ── LAYOUT ── */
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+  section { padding: 80px 0 40px; }
+  section:first-of-type { padding-top: 110px; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(79,142,247,.12) 0%, transparent 70%);
+    padding-top: 52px;
+  }
+  .hero-badge {
+    display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--accent); background: rgba(79,142,247,.12);
+    border: 1px solid rgba(79,142,247,.25); padding: 4px 12px; border-radius: 99px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 60px); font-weight: 800; line-height: 1.1;
+    letter-spacing: -1px; margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p { font-size: 18px; color: var(--muted); max-width: 600px; margin-bottom: 40px; }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 56px; }
+  .chip {
+    font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 99px;
+    border: 1px solid var(--border); color: var(--muted);
+  }
+
+  /* ── STAT CARDS ── */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 32px 0; }
+  .stat-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px 20px;
+    transition: border-color .2s;
+  }
+  .stat-card:hover { border-color: var(--accent); }
+  .stat-card .val {
+    font-size: 32px; font-weight: 800; letter-spacing: -1px; line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-card .label { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .stat-card .sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .red { color: var(--red); }
+  .green { color: var(--green); }
+  .yellow { color: var(--yellow); }
+  .blue { color: var(--accent); }
+
+  /* ── SECTION HEADINGS ── */
+  .sec-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  h2 { font-size: 28px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 12px; }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .lead { font-size: 16px; color: var(--muted); max-width: 680px; margin-bottom: 32px; }
+
+  /* ── DIVIDER ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+  /* ── WATERFALL CHART ── */
+  .waterfall { margin: 32px 0; }
+  .wf-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .wf-label { width: 320px; flex-shrink: 0; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .wf-bar-wrap { flex: 1; position: relative; height: 22px; }
+  .wf-bar {
+    position: absolute; top: 0; height: 100%;
+    border-radius: 4px; display: flex; align-items: center;
+    font-size: 11px; font-weight: 600; padding: 0 8px;
+    white-space: nowrap;
+  }
+  .wf-bar.loss { background: rgba(247,89,106,.18); border: 1px solid rgba(247,89,106,.35); color: var(--red); right: 50%; }
+  .wf-bar.gain { background: rgba(61,214,140,.18); border: 1px solid rgba(61,214,140,.35); color: var(--green); left: 50%; }
+  .wf-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .wf-val { width: 80px; flex-shrink: 0; font-size: 12px; font-weight: 600; text-align: right; }
+
+  /* ── IMPACT TABLE ── */
+  .impact-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+  .impact-table th {
+    text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted); padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .impact-table td {
+    padding: 12px 14px; font-size: 13px; border-bottom: 1px solid rgba(42,48,80,.5);
+  }
+  .impact-table tr:hover td { background: var(--bg3); }
+  .impact-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .tag {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .5px;
+    padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+  }
+  .tag.direct   { background: rgba(79,142,247,.15); color: var(--accent); }
+  .tag.indirect { background: rgba(247,201,72,.12); color: var(--yellow); }
+  .tag.induced  { background: rgba(124,94,247,.15); color: var(--accent2); }
+  .tag.total    { background: rgba(42,48,80,.6);    color: var(--text); }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow { display: flex; align-items: center; gap: 0; margin: 32px 0; flex-wrap: wrap; }
+  .flow-box {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px;
+    min-width: 140px; text-align: center;
+  }
+  .flow-box .f-icon { font-size: 22px; margin-bottom: 6px; }
+  .flow-box .f-label { font-size: 12px; font-weight: 700; }
+  .flow-box .f-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .flow-arrow { color: var(--muted); font-size: 20px; padding: 0 8px; }
+
+  /* ── DASHBOARD CARDS ── */
+  .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 32px 0; }
+  .dash-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px; cursor: default;
+    transition: all .25s; position: relative; overflow: hidden;
+  }
+  .dash-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .dash-card.c1::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+  .dash-card.c2::before { background: linear-gradient(90deg, var(--green), var(--accent)); }
+  .dash-card.c3::before { background: linear-gradient(90deg, var(--yellow), var(--green)); }
+  .dash-card.c4::before { background: linear-gradient(90deg, var(--red), var(--yellow)); }
+  .dash-card.c5::before { background: linear-gradient(90deg, var(--accent2), var(--red)); }
+  .dash-card.c6::before { background: linear-gradient(90deg, var(--accent), var(--green)); }
+  .dash-card:hover { border-color: rgba(79,142,247,.4); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.3); }
+  .dash-card .d-num {
+    font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .dash-card h3 { font-size: 16px; margin-bottom: 8px; }
+  .dash-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .dash-card .d-metrics { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .d-pill {
+    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px;
+    background: var(--bg3); border: 1px solid var(--border); color: var(--muted);
+  }
+
+  /* ── MOCKUP WIREFRAME ── */
+  .mockup {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px; margin: 32px 0;
+  }
+  .mockup-bar {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .mockup-title { font-size: 12px; font-weight: 600; color: var(--muted); margin-left: 6px; }
+  .mockup-inner { display: grid; gap: 12px; }
+  .m-row { display: flex; gap: 12px; }
+  .m-box {
+    background: var(--bg3); border: 1px dashed var(--border);
+    border-radius: 8px; padding: 14px; flex: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 80px; text-align: center;
+  }
+  .m-box .m-label { font-size: 11px; color: var(--muted); }
+  .m-box .m-val { font-size: 18px; font-weight: 800; margin-bottom: 2px; }
+
+  /* minibar for mockup */
+  .mini-bars { width: 100%; }
+  .mini-bar-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; font-size: 10px; color: var(--muted); }
+  .mini-bar-fill { height: 8px; border-radius: 3px; }
+
+  /* ── DIFF IN DIFF ── */
+  .did-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .did-box {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px; text-align: center;
+  }
+  .did-box .d-lab { font-size: 11px; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .did-box .d-val { font-size: 28px; font-weight: 800; }
+  .did-box .d-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .did-equation {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px; text-align: center;
+    font-size: 15px; color: var(--muted); margin: 16px 0;
+    font-family: 'Courier New', monospace;
+  }
+  .did-equation span { color: var(--accent); font-weight: 700; }
+
+  /* ── ROADMAP ── */
+  .roadmap { position: relative; padding-left: 32px; }
+  .roadmap::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .rm-item { position: relative; margin-bottom: 32px; }
+  .rm-item::before {
+    content: ''; position: absolute; left: -27px; top: 5px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(79,142,247,.2);
+  }
+  .rm-item h3 { font-size: 15px; margin-bottom: 4px; }
+  .rm-item p { font-size: 13px; color: var(--muted); }
+  .rm-item .rm-tag {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: .5px;
+    margin-bottom: 6px;
+  }
+  .rm-tag.now { background: rgba(61,214,140,.15); color: var(--green); }
+  .rm-tag.next { background: rgba(79,142,247,.15); color: var(--accent); }
+  .rm-tag.later { background: rgba(42,48,80,.8); color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">AI × Labor</span>
+  <a href="#findings">Findings</a>
+  <a href="#ripple">Ripple Effects</a>
+  <a href="#dashboard">Dashboard Ideas</a>
+  <a href="#didindidenotes">DiD</a>
+  <a href="#roadmap">Roadmap</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════ HERO -->
+<div class="hero">
+<div class="wrap">
+  <div class="hero-badge">Georgetown Macro Final · 2026</div>
+  <h1>How AI Reshapes<br><span>Labor Markets</span></h1>
+  <p>An input-output analysis of 528 US industries — modeling direct, indirect, and induced employment and output effects of AI-driven automation.</p>
+  <div class="hero-chips">
+    <span class="chip">528 Industries</span>
+    <span class="chip">2024 Baseline</span>
+    <span class="chip">IMPLAN I-O Model</span>
+    <span class="chip">Pre vs Post AI</span>
+    <span class="chip">Jobs · Income · Output</span>
+  </div>
+
+  <!-- headline stats -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="val red">−52,231</div>
+      <div class="label">Net jobs lost</div>
+      <div class="sub">across all 528 industries</div>
+    </div>
+    <div class="stat-card">
+      <div class="val red">−0.79%</div>
+      <div class="label">Total employment change</div>
+      <div class="sub">6.59M → 6.53M</div>
+    </div>
+    <div class="stat-card">
+      <div class="val red">−$5B</div>
+      <div class="label">Lost labor income</div>
+      <div class="sub">$469B → $464B</div>
+    </div>
+    <div class="stat-card">
+      <div class="val yellow">$0</div>
+      <div class="label">Net output change</div>
+      <div class="sub">same total, redistributed</div>
+    </div>
+    <div class="stat-card">
+      <div class="val red">262</div>
+      <div class="label">Industries losing jobs</div>
+      <div class="sub">of 528 total</div>
+    </div>
+    <div class="stat-card">
+      <div class="val green">237</div>
+      <div class="label">Industries gaining jobs</div>
+      <div class="sub">partial supply-chain offset</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 1: KEY FINDINGS -->
+<section id="findings">
+<div class="wrap">
+  <div class="sec-label">Section 01</div>
+  <h2>Key Findings</h2>
+  <p class="lead">The automation shock is concentrated and asymmetric. One industry absorbs the vast majority of direct job loss; the rest of the economy feels modest ripple effects in both directions.</p>
+
+  <h3>Who loses the most?</h3>
+  <p style="color:var(--muted); font-size:13px; margin-bottom:16px;">Top 10 industries by employment decline. Bar width = share of max loss.</p>
+
+  <div class="waterfall">
+    <div class="wf-row">
+      <div class="wf-label" style="font-size:11px;color:var(--muted);">Industry</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><span style="position:absolute;left:calc(50% + 4px);top:-18px;font-size:10px;color:var(--muted);">+gain</span><span style="position:absolute;right:calc(50% + 4px);top:-18px;font-size:10px;color:var(--muted);">loss−</span></div>
+      <div class="wf-val" style="font-size:11px;color:var(--muted);">Change</div>
+    </div>
+    <!-- Truck transportation: -67,128 (max) = 100% width = 45% of bar-wrap -->
+    <!-- Each other is proportional -->
+    <div class="wf-row">
+      <div class="wf-label">399 · Truck Transportation</div>
+      <div class="wf-bar-wrap">
+        <div class="wf-zero"></div>
+        <div class="wf-bar loss" style="width:45%;">−67,128</div>
+      </div>
+      <div class="wf-val red">−67,128</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">472 · Hospitals</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar loss" style="width:0.7%;">−1,026</div></div>
+      <div class="wf-val red">−1,026</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">492 · Limited-service Restaurants</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar loss" style="width:0.62%;">−923</div></div>
+      <div class="wf-val red">−923</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">491 · Full-service Restaurants</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar loss" style="width:0.52%;">−773</div></div>
+      <div class="wf-val red">−773</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">465 · Offices of Physicians</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar loss" style="width:0.48%;">−720</div></div>
+      <div class="wf-val red">−720</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">475 · Individual & Family Services</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar loss" style="width:0.46%;">−689</div></div>
+      <div class="wf-val red">−689</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">389 · Retail Food & Beverage</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar loss" style="width:0.34%;">−499</div></div>
+      <div class="wf-val red">−499</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">394 · Retail General Merchandise</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar loss" style="width:0.26%;">−395</div></div>
+      <div class="wf-val red">−395</div>
+    </div>
+  </div>
+
+  <hr>
+  <h3>Who gains?</h3>
+  <p style="color:var(--muted); font-size:13px; margin-bottom:16px;">Displaced truckers still need packages delivered — last-mile and logistics winners.</p>
+  <div class="waterfall">
+    <div class="wf-row">
+      <div class="wf-label">403 · Couriers & Messengers</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar gain" style="width:7%;">+10,208</div></div>
+      <div class="wf-val green">+10,208</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">402 · Scenic & Sightseeing / Support</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar gain" style="width:3.4%;">+5,127</div></div>
+      <div class="wf-val green">+5,127</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">404 · Warehousing & Storage</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar gain" style="width:1.6%;">+2,373</div></div>
+      <div class="wf-val green">+2,373</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">454 · Employment Services</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar gain" style="width:1.5%;">+2,288</div></div>
+      <div class="wf-val green">+2,288</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-label">391 · Retail Gasoline Stores</div>
+      <div class="wf-bar-wrap"><div class="wf-zero"></div><div class="wf-bar gain" style="width:0.8%;">+1,175</div></div>
+      <div class="wf-val green">+1,175</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Impact breakdown table -->
+  <h3>Direct → Indirect → Induced: The Multiplier Chain</h3>
+  <p class="lead">Every job lost in trucking ripples outward. Input-output multipliers capture how automation in one industry contracts demand in others — and partially re-stimulates supply-chain sectors.</p>
+
+  <table class="impact-table">
+    <thead>
+      <tr>
+        <th>Impact Layer</th>
+        <th class="num">Pre-AI Jobs</th>
+        <th class="num">Post-AI Jobs</th>
+        <th class="num">Δ Jobs</th>
+        <th class="num">Δ Labor Income</th>
+        <th class="num">Δ Output</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag direct">Direct</span></td>
+        <td class="num">2,429,610</td>
+        <td class="num">2,360,526</td>
+        <td class="num red">−69,084</td>
+        <td class="num red">−$7B</td>
+        <td class="num">$0</td>
+      </tr>
+      <tr>
+        <td><span class="tag indirect">Indirect</span></td>
+        <td class="num">2,056,333</td>
+        <td class="num">2,097,555</td>
+        <td class="num green">+41,222</td>
+        <td class="num green">+$3B</td>
+        <td class="num green">+$8B</td>
+      </tr>
+      <tr>
+        <td><span class="tag induced">Induced</span></td>
+        <td class="num">2,100,059</td>
+        <td class="num">2,075,691</td>
+        <td class="num red">−24,368</td>
+        <td class="num red">−$2B</td>
+        <td class="num red">−$5B</td>
+      </tr>
+      <tr style="font-weight:700;">
+        <td><span class="tag total">Total</span></td>
+        <td class="num">6,586,002</td>
+        <td class="num">6,533,771</td>
+        <td class="num red">−52,231</td>
+        <td class="num red">−$5B</td>
+        <td class="num">$0</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-top:24px;">
+    <p style="font-size:14px;"><strong style="color:var(--yellow);">Key insight:</strong> <span style="color:var(--muted);">Indirect effects are <em style="color:var(--text);">positive</em> (+41K jobs, +$8B output) because automation in trucking raises demand in adjacent supply-chain industries — petroleum, vehicle repair, insurance. The induced effect (consumer spending) contracts because lower wages mean less household spending. The net: labor loses, but aggregate output is neutral.</span></p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 2: RIPPLE EFFECTS -->
+<section id="ripple">
+<div class="wrap">
+  <div class="sec-label">Section 02</div>
+  <h2>How the Ripple Works</h2>
+  <p class="lead">The I-O model traces a single automation shock through three waves. Understanding this chain is the foundation of every dashboard view we'll build.</p>
+
+  <div class="flow">
+    <div class="flow-box">
+      <div class="f-icon">🤖</div>
+      <div class="f-label">AI Adoption</div>
+      <div class="f-sub">Trucking / AV</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="border-color:rgba(247,89,106,.4);">
+      <div class="f-icon">📉</div>
+      <div class="f-label">Direct Effect</div>
+      <div class="f-sub">−69K jobs<br>−$7B wages</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="border-color:rgba(247,201,72,.4);">
+      <div class="f-icon">🏭</div>
+      <div class="f-label">Indirect Effect</div>
+      <div class="f-sub">Supply chain<br>+41K jobs +$8B</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="border-color:rgba(124,94,247,.4);">
+      <div class="f-icon">🛒</div>
+      <div class="f-label">Induced Effect</div>
+      <div class="f-sub">Consumer spend<br>−24K jobs −$5B</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="border-color:rgba(61,214,140,.4);">
+      <div class="f-icon">⚖️</div>
+      <div class="f-label">Net</div>
+      <div class="f-sub">−52K jobs<br>$0 output Δ</div>
+    </div>
+  </div>
+
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-top:8px;">
+    <h3 style="margin-bottom:12px;">The Output Paradox</h3>
+    <p style="font-size:14px;color:var(--muted);">Total output barely changes ($1.370T → $1.371T). Automation doesn't destroy economic value — it <em style="color:var(--text);">redistributes</em> it from labor to capital. Firms producing the same output with fewer workers means: higher profit margins, lower prices, or both. The dashboard must expose this redistribution, not just the headline job number.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 3: DASHBOARD IDEAS -->
+<section id="dashboard">
+<div class="wrap">
+  <div class="sec-label">Section 03</div>
+  <h2>Dashboard Concept Map</h2>
+  <p class="lead">Six views, each answering a different question. Together they let you slice the automation shock by industry, occupation, geography, time, and policy scenario.</p>
+
+  <div class="dash-grid">
+
+    <div class="dash-card c1">
+      <div class="d-num">View 01</div>
+      <h3>Industry Command Center</h3>
+      <p>Select any of the 528 industries. See Pre vs Post side-by-side: employment, labor income, value added, output — with the full Direct/Indirect/Induced breakdown and multiplier chain visualization.</p>
+      <div class="d-metrics">
+        <span class="d-pill">Bar charts</span>
+        <span class="d-pill">Multiplier waterfall</span>
+        <span class="d-pill">Industry search</span>
+        <span class="d-pill">Export to CSV</span>
+      </div>
+    </div>
+
+    <div class="dash-card c2">
+      <div class="d-num">View 02</div>
+      <h3>Labor Market Heat Map</h3>
+      <p>All 528 industries plotted on a bubble chart: X = % job change, Y = wage change, bubble size = total employment. Color = net winner/loser. Click any bubble to drill into that industry's full impact table.</p>
+      <div class="d-metrics">
+        <span class="d-pill">Scatter / bubble</span>
+        <span class="d-pill">Quadrant filter</span>
+        <span class="d-pill">Hover tooltips</span>
+        <span class="d-pill">Click-to-drill</span>
+      </div>
+    </div>
+
+    <div class="dash-card c3">
+      <div class="d-num">View 03</div>
+      <h3>Occupation Exposure Index</h3>
+      <p>Map job categories onto an "automation exposure" axis derived from O*NET task data. Show which occupations are complemented vs substituted — layered on top of our I-O employment changes.</p>
+      <div class="d-metrics">
+        <span class="d-pill">O*NET tasks</span>
+        <span class="d-pill">Routine index</span>
+        <span class="d-pill">Treemap by SOC</span>
+        <span class="d-pill">Before/after slider</span>
+      </div>
+    </div>
+
+    <div class="dash-card c4">
+      <div class="d-num">View 04</div>
+      <h3>Diff-in-Diff Lab</h3>
+      <p>Compare treated industries (automation-exposed) vs control groups. Set a policy event date, define treatment/control, and see parallel trends + post-treatment divergence. Quantify the ATT.</p>
+      <div class="d-metrics">
+        <span class="d-pill">DiD estimator</span>
+        <span class="d-pill">Event study</span>
+        <span class="d-pill">ATT / ATU / ATE</span>
+        <span class="d-pill">CI bands</span>
+      </div>
+    </div>
+
+    <div class="dash-card c5">
+      <div class="d-num">View 05</div>
+      <h3>Regional Impact Map</h3>
+      <p>Scale our national I-O results to MSA / state level using BLS regional employment shares. Show which metros are most exposed to automation risk by dominant local industries.</p>
+      <div class="d-metrics">
+        <span class="d-pill">Choropleth map</span>
+        <span class="d-pill">Metro filter</span>
+        <span class="d-pill">BLS QCEW weights</span>
+        <span class="d-pill">Risk score</span>
+      </div>
+    </div>
+
+    <div class="dash-card c6">
+      <div class="d-num">View 06</div>
+      <h3>Scenario Simulator</h3>
+      <p>Adjust the automation intensity slider per industry (0–100%). Watch employment and output recalculate in real time via the I-O multiplier engine. Compare multiple scenarios side by side.</p>
+      <div class="d-metrics">
+        <span class="d-pill">Slider controls</span>
+        <span class="d-pill">Real-time I-O calc</span>
+        <span class="d-pill">Scenario save/compare</span>
+        <span class="d-pill">Policy overlay</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Wireframe mockup of View 01 -->
+  <hr>
+  <h3>Wireframe: View 01 — Industry Command Center</h3>
+  <div class="mockup">
+    <div class="mockup-bar">
+      <div class="mockup-dot" style="background:#f7596a;"></div>
+      <div class="mockup-dot" style="background:#f7c948;"></div>
+      <div class="mockup-dot" style="background:#3dd68c;"></div>
+      <span class="mockup-title">AI Labor Dashboard — Industry: 399 Truck Transportation</span>
+    </div>
+    <div class="mockup-inner">
+      <!-- KPI row -->
+      <div class="m-row">
+        <div class="m-box"><div class="m-val red">−67,128</div><div class="m-label">Jobs lost</div></div>
+        <div class="m-box"><div class="m-val red">−2.62%</div><div class="m-label">% employment Δ</div></div>
+        <div class="m-box"><div class="m-val green">+$416M</div><div class="m-label">Output Δ</div></div>
+        <div class="m-box"><div class="m-val yellow">−$5B</div><div class="m-label">Labor income Δ</div></div>
+      </div>
+      <!-- chart + table row -->
+      <div class="m-row" style="min-height:120px;">
+        <div class="m-box" style="flex:2;">
+          <div class="m-label" style="margin-bottom:8px;">Employment by Impact Type (Pre vs Post)</div>
+          <div class="mini-bars" style="width:90%;">
+            <div class="mini-bar-row"><span style="width:55px;text-align:right;">Direct</span><div class="mini-bar-fill" style="width:120px;background:rgba(247,89,106,.5);"></div><div class="mini-bar-fill" style="width:106px;background:rgba(247,89,106,.25);margin-left:3px;"></div></div>
+            <div class="mini-bar-row"><span style="width:55px;text-align:right;">Indirect</span><div class="mini-bar-fill" style="width:60px;background:rgba(247,201,72,.5);"></div><div class="mini-bar-fill" style="width:64px;background:rgba(247,201,72,.25);margin-left:3px;"></div></div>
+            <div class="mini-bar-row"><span style="width:55px;text-align:right;">Induced</span><div class="mini-bar-fill" style="width:50px;background:rgba(124,94,247,.5);"></div><div class="mini-bar-fill" style="width:46px;background:rgba(124,94,247,.25);margin-left:3px;"></div></div>
+          </div>
+        </div>
+        <div class="m-box" style="flex:1;">
+          <div class="m-label">Supply-chain gainers</div>
+          <div style="font-size:11px;color:var(--green);margin-top:6px;text-align:left;">
+            403 Couriers +10,208<br>
+            404 Warehousing +2,373<br>
+            391 Gasoline +1,175
+          </div>
+        </div>
+      </div>
+      <div class="m-box" style="min-height:36px;">
+        <div class="m-label">← Drag slider to change automation intensity | Compare with ▾ | Export CSV</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 4: DiD -->
+<section id="didindidenotes">
+<div class="wrap">
+  <div class="sec-label">Section 04</div>
+  <h2>Diff-in-Diff: The Causal Engine</h2>
+  <p class="lead">The I-O model gives us correlational changes. To make causal claims, the dashboard's DiD view needs treatment and control groups, a policy event, and parallel pre-trends.</p>
+
+  <div class="did-equation">
+    <span>ATT</span> = (Post<sub>treated</sub> − Pre<sub>treated</sub>) − (Post<sub>control</sub> − Pre<sub>control</sub>)
+  </div>
+
+  <p style="color:var(--muted);font-size:14px;margin-bottom:24px;">Applied to our data: <em style="color:var(--text);">Treated</em> = industries with high automation exposure (trucking, food service, retail). <em style="color:var(--text);">Control</em> = industries with low exposure (legal, R&D, religious organizations). The policy event = a specific AI deployment date or regulatory change.</p>
+
+  <div class="did-grid">
+    <div class="did-box">
+      <div class="d-lab">Treated — Trucking (Pre)</div>
+      <div class="d-val">2,560,367</div>
+      <div class="d-sub">jobs before AI</div>
+    </div>
+    <div class="did-box">
+      <div class="d-lab">Treated — Trucking (Post)</div>
+      <div class="d-val red">2,493,239</div>
+      <div class="d-sub">−67,128 jobs</div>
+    </div>
+    <div class="did-box">
+      <div class="d-lab">Control — Couriers (Pre)</div>
+      <div class="d-val">553,564</div>
+      <div class="d-sub">jobs before AI</div>
+    </div>
+    <div class="did-box">
+      <div class="d-lab">Control — Couriers (Post)</div>
+      <div class="d-val green">563,771</div>
+      <div class="d-sub">+10,208 jobs</div>
+    </div>
+  </div>
+
+  <div class="did-equation">
+    ATT = (2,493,239 − 2,560,367) − (563,771 − 553,564)<br>
+    = <span>−67,128</span> − <span>+10,208</span> = <span>−77,336</span>
+  </div>
+
+  <p style="font-size:14px;color:var(--muted);">This estimate says automation causally eliminated ~77K trucking-equivalent jobs — the raw −67K understates the effect because couriers also benefited from displaced demand. The DiD view in the dashboard will let you pick any pair and see this calculation live.</p>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 5: ROADMAP -->
+<section id="roadmap">
+<div class="wrap">
+  <div class="sec-label">Section 05</div>
+  <h2>Build Roadmap</h2>
+  <p class="lead">From wrangled CSVs to a full interactive dashboard — here's the path.</p>
+
+  <div class="roadmap">
+    <div class="rm-item">
+      <div class="rm-tag now">Done</div>
+      <h3>Data wrangling & CSV outputs</h3>
+      <p>528-industry Pre/Post employment and output tables, impact breakdowns (Direct/Indirect/Induced), summary comparison — all cleaned and exported.</p>
+    </div>
+    <div class="rm-item">
+      <div class="rm-tag now">Done</div>
+      <h3>Key findings presentation (this doc)</h3>
+      <p>Headline stats, waterfall charts, impact table, DiD framework, dashboard concept map.</p>
+    </div>
+    <div class="rm-item">
+      <div class="rm-tag next">Next</div>
+      <h3>Interactive dashboard — Views 01 & 02</h3>
+      <p>Industry selector + employment bubble chart. Stack: React + Recharts or plain D3.js + the CSVs as static data source.</p>
+    </div>
+    <div class="rm-item">
+      <div class="rm-tag next">Next</div>
+      <h3>Diff-in-Diff Lab (View 04)</h3>
+      <p>Treatment/control group picker, ATT calculator, event study plot with confidence bands. Needs a time-series layer — will require BLS QCEW annual employment data for historical pre-trends.</p>
+    </div>
+    <div class="rm-item">
+      <div class="rm-tag later">Later</div>
+      <h3>Occupation layer (O*NET integration)</h3>
+      <p>Pull O*NET task-level data, compute routine task index per SOC code, join to our NAICS-level I-O industries. Adds the "who within an industry" dimension.</p>
+    </div>
+    <div class="rm-item">
+      <div class="rm-tag later">Later</div>
+      <h3>Regional map (BLS QCEW weights)</h3>
+      <p>Scale national I-O results to MSA / state using location quotients. Choropleth showing automation exposure risk by geography.</p>
+    </div>
+    <div class="rm-item">
+      <div class="rm-tag later">Later</div>
+      <h3>Scenario simulator (View 06)</h3>
+      <p>Real-time I-O multiplier engine in the browser. Requires pre-computing the Leontief inverse or shipping it as a lookup table. Most compute-intensive view.</p>
+    </div>
+  </div>
+
+  <hr>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+    <h3 style="margin-bottom:10px;">Data files ready for the dashboard</h3>
+    <div style="display:grid;gap:8px;font-size:13px;color:var(--muted);">
+      <div><code style="color:var(--accent);">summary_comparison.csv</code> — Pre/Post totals by impact type · 4 rows</div>
+      <div><code style="color:var(--accent);">industry_employment.csv</code> — All 528 industries, employment Pre+Post+Δ+% · sorted by loss</div>
+      <div><code style="color:var(--accent);">industry_output.csv</code> — Same for output in dollars</div>
+      <div><code style="color:var(--accent);">impact_breakdown_pre/post.csv</code> — Direct/Indirect/Induced per industry, Pre and Post</div>
+      <div><code style="color:var(--accent);">impact_output_pre/post.csv</code> — Same for output</div>
+      <div><code style="color:var(--accent);">combined_industry_full.csv</code> — Everything merged: 529 × 21 columns, dashboard-ready</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div style="height:80px;"></div>
+
+</body>
+</html>
