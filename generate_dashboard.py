@@ -355,20 +355,7 @@ tbody td{{
 
 /* ── IMPACT MAP ── */
 .impact-layout{{display:flex;flex-direction:column;gap:16px}}
-.stacked-wrap{{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:10px;overflow:hidden;height:360px;position:relative;flex-shrink:0;
-}}
-#stacked-svg{{width:100%;height:100%;display:block}}
-.stacked-tooltip{{
-  position:absolute;pointer-events:none;
-  background:rgba(9,9,14,.97);backdrop-filter:blur(12px);
-  border:1px solid var(--border);border-radius:8px;
-  padding:12px 16px;min-width:180px;display:none;z-index:10;
-}}
-.mt-name{{font-family:var(--font-d);font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}}
-.mt-row{{display:flex;justify-content:space-between;gap:18px;font-family:var(--font-m);font-size:13px;margin-bottom:3px}}
-.mt-key{{color:var(--text)}}
+.wf-grid{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:0}}
 .impact-bottom-3{{
   display:grid;grid-template-columns:1fr 1fr;
   gap:16px;min-height:440px;
@@ -685,11 +672,8 @@ tbody td{{
   <div id="view-exposure" class="view">
     <div class="impact-layout">
       <div style="flex-shrink:0">
-        <div class="section-head" style="margin-bottom:8px">Supply-Chain Footprint Job Change — Sorted Worst → Best · Callouts = Top Losing Sectors</div>
-        <div class="stacked-wrap">
-          <svg id="stacked-svg"></svg>
-          <div class="stacked-tooltip" id="stacked-tooltip"></div>
-        </div>
+        <div class="section-head" style="margin-bottom:12px">Multiplier Waterfall — Direct · Indirect &amp; Induced · Net Total · All Four Metrics</div>
+        <div id="waterfall-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px"></div>
       </div>
       <div class="impact-bottom-3">
         <div class="impact-panel" style="overflow:hidden">
@@ -1034,124 +1018,172 @@ function renderDetailPanel() {{
 
 // ── IMPACT MAP ───────────────────────────────────────────────────────────────
 function renderImpact() {{
-  renderStackedBars();
+  renderWaterfall();
   renderTreemap();
   renderHeatmap();
   renderDonut();
 }}
 
-function renderStackedBars() {{
-  const svg = document.getElementById('stacked-svg');
-  if (!svg) return;
-  const W = svg.clientWidth || 900;
-  const H = svg.clientHeight || 360;
-  const PAD = {{l:66, r:200, t:20, b:68}};
-  const w = W - PAD.l - PAD.r;
-  const h = H - PAD.t - PAD.b;
+function renderWaterfall() {{
+  const container = document.getElementById('waterfall-container');
+  if (!container) return;
 
-  const sectors = SECTORS.slice().sort((a,b) => {{
-    const aChg = currentWave==='llm'
-      ? INDUSTRIES.filter(i=>i.sector===a.Sector).reduce((s,i)=>s+i.llm_chg_emp,0)
-      : a.Job_Change;
-    const bChg = currentWave==='llm'
-      ? INDUSTRIES.filter(i=>i.sector===b.Sector).reduce((s,i)=>s+i.llm_chg_emp,0)
-      : b.Job_Change;
-    return aChg - bChg;
-  }});
+  // All four impact metrics — AV current wave values from IMPLAN model
+  // Employment: D=-69,084 | I+Ind=+16,854 | Total=-52,231
+  // Labor Income: D=-7.0B | I+Ind=+2.0B | Total=-5.0B
+  // Value Added: D=-6.0B | I+Ind=+2.0B | Total=-4.0B
+  // Output: D=$0 (AV preserves output via productivity) | I+Ind=+3.0B | Total≈$0
+  const LLM_EMP_D  = INDUSTRIES.filter(i=>i.alm==='RM').reduce((s,i)=>s+i.llm_chg_emp,0);
+  const LLM_EMP_II = INDUSTRIES.filter(i=>i.alm!=='RM').reduce((s,i)=>s+i.llm_chg_emp,0);
+  const LLM_TOTAL  = INDUSTRIES.reduce((s,i)=>s+i.llm_chg_emp,0);
 
-  const allChg = sectors.map(s => currentWave==='llm'
-    ? INDUSTRIES.filter(i=>i.sector===s.Sector).reduce((a,b)=>a+b.llm_chg_emp,0)
-    : s.Job_Change);
+  const METRICS = [
+    {{
+      label: 'Employment',
+      sub: 'Full- & part-time jobs',
+      direct:   currentWave==='llm' ? LLM_EMP_D  : -69084,
+      ii:       currentWave==='llm' ? LLM_EMP_II : 16854,
+      total:    currentWave==='llm' ? LLM_TOTAL  : -52231,
+      fmtV: v => {{
+        if (v === 0) return '0';
+        const abs = Math.abs(v);
+        const s = v >= 0 ? '+' : '−';
+        return s + (abs >= 1000 ? (abs/1000).toFixed(0)+'K' : abs.toFixed(0));
+      }},
+      color: v => v < 0 ? '#C8243E' : v > 0 ? '#1B9160' : '#38364A',
+      unitY: v => Math.abs(v)>=1000?(v<0?'−':'+')+(Math.abs(v)/1000).toFixed(0)+'K':(v<0?'−':'+')+Math.abs(v).toFixed(0),
+    }},
+    {{
+      label: 'Labor Income',
+      sub: 'Salaries, wages & benefits',
+      direct: currentWave==='llm' ? -9.0  : -7.0,
+      ii:     currentWave==='llm' ?  2.5  :  2.0,
+      total:  currentWave==='llm' ? -6.5  : -5.0,
+      fmtV: v => v===0 ? '$0' : (v>=0?'+$':'-$')+Math.abs(v).toFixed(1)+'B',
+      color: v => v < 0 ? '#C8243E' : v > 0 ? '#1B9160' : '#38364A',
+      unitY: v => (v<0?'-$':'$')+Math.abs(v).toFixed(1)+'B',
+    }},
+    {{
+      label: 'Value Added (GDP)',
+      sub: 'Labor income + property income + taxes',
+      direct: currentWave==='llm' ? -8.0  : -6.0,
+      ii:     currentWave==='llm' ?  2.5  :  2.0,
+      total:  currentWave==='llm' ? -5.5  : -4.0,
+      fmtV: v => v===0 ? '$0' : (v>=0?'+$':'-$')+Math.abs(v).toFixed(1)+'B',
+      color: v => v < 0 ? '#C8243E' : v > 0 ? '#1B9160' : '#38364A',
+      unitY: v => (v<0?'-$':'$')+Math.abs(v).toFixed(1)+'B',
+    }},
+    {{
+      label: 'Output',
+      sub: 'Value added + intermediate inputs',
+      direct: 0,
+      ii:     currentWave==='llm' ? 4.0 : 3.0,
+      total:  0,
+      fmtV: v => v===0 ? '≈$0' : (v>=0?'+$':'-$')+Math.abs(v).toFixed(1)+'B',
+      color: v => v < 0 ? '#C8243E' : v > 0 ? '#1B9160' : '#38364A',
+      unitY: v => v===0?'$0':(v<0?'-$':'$')+Math.abs(v).toFixed(1)+'B',
+      note: 'AV preserves output via productivity gains',
+    }},
+  ];
 
-  const yMin = Math.min(0, Math.min(...allChg));
-  const yMax = Math.max(0, Math.max(...allChg));
-  const yPad = Math.abs(yMin) * 0.08;
-  const yRange = (yMax - yMin) + yPad * 2;
-  const yS = v => PAD.t + (1 - (v - yMin + yPad) / yRange) * h;
-  const yZero = yS(0);
+  const cW = container.clientWidth || 800;
+  const panelW = Math.floor((cW - 12) / 2);
+  const PH = 230;
+  const PAD = {{l:58, r:18, t:54, b:42}};
 
-  const barW = w / sectors.length;
-  const barGap = 1.5;
+  container.innerHTML = METRICS.map(m => {{
+    const bw = panelW - PAD.l - PAD.r;
+    const bh = PH - PAD.t - PAD.b;
 
-  let markup = '';
+    // Waterfall steps: 0 → direct → direct+ii (running sum) → total (anchored at 0)
+    const runDirect = m.direct;
+    const runII    = m.direct + m.ii;
+    const allPts   = [0, runDirect, runII, m.total];
+    const rawMin   = Math.min(...allPts);
+    const rawMax   = Math.max(...allPts);
+    const span     = rawMax - rawMin || 1;
+    const yPad     = span * 0.16;
+    const yMin     = rawMin - yPad;
+    const yMax     = rawMax + yPad;
+    const yRange   = yMax - yMin;
+    const yS       = v => PAD.t + (1 - (v - yMin) / yRange) * bh;
+    const yZero    = yS(0);
 
-  // Grid lines
-  const absMax = Math.max(Math.abs(yMin), yMax);
-  const rawStep = absMax / 3;
-  const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
-  const step = Math.ceil(rawStep / mag) * mag;
-  const ticks = [];
-  for (let v = Math.ceil(yMin/step)*step; v <= yMax+step*0.1; v += step) ticks.push(v);
+    // 3 bars: Direct, I+Ind (floating), Total
+    const nBars = 3;
+    const segW  = bw / (nBars * 2 + 1);
+    const barW  = segW * 1.6;
+    const bars  = [
+      {{label:'Direct',       x: PAD.l + segW * 1,   lo: Math.min(0, runDirect), hi: Math.max(0, runDirect),  val: m.direct, float: false}},
+      {{label:'I + Ind', x: PAD.l + segW * 3, lo: Math.min(runDirect, runII), hi: Math.max(runDirect, runII), val: m.ii, float: true, floatBase: runDirect}},
+      {{label:'Net Total',    x: PAD.l + segW * 5,   lo: Math.min(0, m.total),  hi: Math.max(0, m.total),   val: m.total, float: false}},
+    ];
 
-  ticks.forEach(v => {{
-    const y = yS(v);
-    markup += `<line x1="${{PAD.l}}" y1="${{y.toFixed(1)}}" x2="${{(PAD.l+w).toFixed(1)}}" y2="${{y.toFixed(1)}}" stroke="${{v===0?'#38364A':'#1a1a24'}}" stroke-width="${{v===0?1.5:0.8}}"/>`;
-    const label = v === 0 ? '0' : (v>0?'+':'')+(Math.abs(v)>=1000?(v/1000).toFixed(0)+'K':v);
-    markup += `<text x="${{(PAD.l-6).toFixed(1)}}" y="${{(y+4.5).toFixed(1)}}" fill="#EAE5DC" font-size="12" font-family="JetBrains Mono" text-anchor="end">${{label}}</text>`;
-  }});
+    let s = '';
 
-  // Bars + callouts for top 3 losers
-  const callouts = [];
-  sectors.forEach((s, i) => {{
-    const chg = allChg[i];
-    const x = PAD.l + i * barW;
-    const bw = Math.max(1, barW - barGap);
-    const isLoss = chg < 0;
-    const barTopY = isLoss ? yZero : yS(chg);
-    const barBotY = isLoss ? yS(chg) : yZero;
-    const bh = Math.max(2, barBotY - barTopY);
-    const color = isLoss ? '#C8243E' : '#1B9160';
-    const cx = x + barW / 2;
+    // Subtle grid lines at reasonable ticks
+    const nTicks = 4;
+    const tickStep = span / nTicks;
+    const mag = Math.pow(10, Math.floor(Math.log10(Math.max(tickStep,0.001))));
+    const niceStep = Math.ceil(tickStep / mag) * mag;
+    for (let v = Math.floor(rawMin/niceStep)*niceStep; v <= rawMax + niceStep*0.1; v += niceStep) {{
+      const yt = yS(v);
+      if (yt < PAD.t || yt > PAD.t+bh) continue;
+      s += `<line x1="${{PAD.l}}" y1="${{yt.toFixed(1)}}" x2="${{(PAD.l+bw).toFixed(1)}}" y2="${{yt.toFixed(1)}}" stroke="${{Math.abs(v)<0.0001?'#38364A':'#1a1a24'}}" stroke-width="${{Math.abs(v)<0.0001?1.5:0.7}}"/>`;
+      if (Math.abs(v) < 0.0001 || Math.abs((yt-yS(0))/(bh||1)) > 0.08)
+        s += `<text x="${{(PAD.l-5).toFixed(1)}}" y="${{(yt+4).toFixed(1)}}" fill="#8A84A0" font-size="12" font-family="JetBrains Mono" text-anchor="end">${{m.unitY(v)}}</text>`;
+    }}
 
-    markup += `<rect x="${{(x+barGap/2).toFixed(1)}}" y="${{barTopY.toFixed(1)}}" width="${{bw.toFixed(1)}}" height="${{bh.toFixed(1)}}" fill="${{color}}" fill-opacity="0.82" class="sbar" data-sector="${{s.Sector}}" data-chg="${{chg.toFixed(0)}}" style="cursor:pointer"/>`;
+    // Zero line (always shown)
+    if (yZero >= PAD.t && yZero <= PAD.t+bh)
+      s += `<line x1="${{PAD.l}}" y1="${{yZero.toFixed(1)}}" x2="${{(PAD.l+bw).toFixed(1)}}" y2="${{yZero.toFixed(1)}}" stroke="#38364A" stroke-width="1.5"/>`;
 
-    // X-axis labels (angled, below zero line)
-    const sname = s.Sector.replace('Manufacturing — ','Mfg·').replace('Agriculture & Natural Resources','Agri & Nat.Res').replace(' & ',' & ');
-    const short = sname.length > 13 ? sname.slice(0,12)+'…' : sname;
-    markup += `<text x="${{cx.toFixed(1)}}" y="${{(yZero+10).toFixed(1)}}" fill="#EAE5DC" font-size="12" font-family="Syne" text-anchor="end" transform="rotate(-42 ${{cx.toFixed(1)}} ${{(yZero+10).toFixed(1)}})" opacity="0.9">${{short}}</text>`;
+    // Connector dashes between bars
+    // Bar 0 → Bar 1: connect at the running total after direct
+    const connY01 = yS(runDirect);
+    s += `<line x1="${{(bars[0].x + barW/2 + 2).toFixed(1)}}" y1="${{connY01.toFixed(1)}}" x2="${{(bars[1].x - barW/2 - 2).toFixed(1)}}" y2="${{connY01.toFixed(1)}}" stroke="#38364A" stroke-width="1" stroke-dasharray="5,3"/>`;
+    // Bar 1 → Bar 2: connect at zero (total anchors at zero)
+    s += `<line x1="${{(bars[1].x + barW/2 + 2).toFixed(1)}}" y1="${{yZero.toFixed(1)}}" x2="${{(bars[2].x - barW/2 - 2).toFixed(1)}}" y2="${{yZero.toFixed(1)}}" stroke="#38364A" stroke-width="1" stroke-dasharray="5,3"/>`;
 
-    if (isLoss && callouts.length < 3) callouts.push({{cx, barTopY, sector:s.Sector, chg}});
-  }});
+    // Draw each bar
+    bars.forEach((b, bi) => {{
+      const y1 = yS(b.hi);
+      const y2 = yS(b.lo);
+      const barH = Math.max(2, y2 - y1);
+      const color = m.color(b.val);
+      const valStr = m.fmtV(b.val);
+      const valColor = m.color(b.val);
 
-  // Draw callout annotations
-  callouts.forEach((c, i) => {{
-    const bx = PAD.l + w + 14;
-    const by = PAD.t + i * 86 + 10;
-    markup += `<line x1="${{c.cx.toFixed(1)}}" y1="${{c.barTopY.toFixed(1)}}" x2="${{bx}}" y2="${{(by+14).toFixed(1)}}" stroke="#C8243E" stroke-width="0.9" stroke-dasharray="3,2" opacity="0.55"/>`;
-    markup += `<rect x="${{bx}}" y="${{by}}" width="178" height="44" rx="5" fill="#1E1E28" stroke="#C8243E" stroke-width="0.8" stroke-opacity="0.5"/>`;
-    const name = c.sector.replace('Manufacturing — ','Mfg ').replace('Agriculture & Natural Resources','Agri & Nat. Res.');
-    const short = name.length > 22 ? name.slice(0,21)+'…' : name;
-    markup += `<text x="${{(bx+10).toFixed(1)}}" y="${{(by+17).toFixed(1)}}" fill="#EAE5DC" font-size="12" font-family="Syne" font-weight="600">${{short}}</text>`;
-    markup += `<text x="${{(bx+10).toFixed(1)}}" y="${{(by+34).toFixed(1)}}" fill="#C8243E" font-size="12" font-family="JetBrains Mono">${{parseInt(c.chg).toLocaleString()}} jobs</text>`;
-  }});
+      // Bar rect with subtle stroke
+      s += `<rect x="${{(b.x - barW/2).toFixed(1)}}" y="${{y1.toFixed(1)}}" width="${{barW.toFixed(1)}}" height="${{barH.toFixed(1)}}" fill="${{color}}" fill-opacity="0.78" rx="4" stroke="${{color}}" stroke-opacity="0.3" stroke-width="1"/>`;
 
-  markup += `<text x="14" y="${{(PAD.t+h/2).toFixed(0)}}" fill="#fff" font-size="12" font-weight="600" font-family="Syne" text-anchor="middle" transform="rotate(-90 14 ${{(PAD.t+h/2).toFixed(0)}})">Job Change</text>`;
-  markup += `<text x="${{(PAD.l+w/2).toFixed(0)}}" y="${{(H-4).toFixed(0)}}" fill="#fff" font-size="12" font-weight="600" font-family="Syne" text-anchor="middle">← Biggest Losers · 23 sectors sorted · Best Performers →</text>`;
+      // Value label — above bar if negative (bar goes down), below if positive
+      const labelAbove = b.val < 0 || (b.float && b.val < 0);
+      const valY = b.val < 0 ? y1 - 7 : y2 + 16;
+      const clampedValY = Math.max(PAD.t + 14, Math.min(PAD.t + bh - 4, valY));
+      s += `<text x="${{b.x.toFixed(1)}}" y="${{clampedValY.toFixed(1)}}" fill="${{valColor}}" font-size="13" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">${{valStr}}</text>`;
 
-  svg.innerHTML = markup;
-
-  const tt = document.getElementById('stacked-tooltip');
-  svg.querySelectorAll('.sbar').forEach(el => {{
-    el.addEventListener('mouseenter', e => {{
-      el.setAttribute('fill-opacity','1');
-      const chg = parseInt(el.dataset.chg);
-      tt.style.display = 'block';
-      tt.innerHTML = `<div class="mt-name">${{el.dataset.sector}}</div>
-        <div class="mt-row"><span class="mt-key">Job Change</span><span class="${{sign(chg)}}">${{chg>=0?'+':''}}${{chg.toLocaleString()}}</span></div>`;
-      const rec = svg.getBoundingClientRect();
-      tt.style.left = (e.clientX - rec.left + 14) + 'px';
-      tt.style.top  = Math.max(4, e.clientY - rec.top - 40) + 'px';
+      // Bar label below chart
+      const lines = b.label.split('\\n');
+      lines.forEach((line, li) =>
+        s += `<text x="${{b.x.toFixed(1)}}" y="${{(PAD.t + bh + 16 + li*14).toFixed(1)}}" fill="#8A84A0" font-size="12" font-family="Syne" font-weight="600" text-anchor="middle">${{line}}</text>`
+      );
     }});
-    el.addEventListener('mousemove', e => {{
-      const rec = svg.getBoundingClientRect();
-      tt.style.left = (e.clientX - rec.left + 14) + 'px';
-      tt.style.top  = Math.max(4, e.clientY - rec.top - 40) + 'px';
-    }});
-    el.addEventListener('mouseleave', () => {{
-      el.setAttribute('fill-opacity','0.82');
-      tt.style.display = 'none';
-    }});
-  }});
+
+    // Panel title + subtitle
+    s += `<text x="${{(PAD.l + bw/2).toFixed(1)}}" y="20" fill="#EAE5DC" font-size="14" font-family="Syne" font-weight="700" text-anchor="middle">${{m.label}}</text>`;
+    s += `<text x="${{(PAD.l + bw/2).toFixed(1)}}" y="36" fill="#8A84A0" font-size="12" font-family="Syne" text-anchor="middle">${{m.sub}}</text>`;
+
+    // Output note overlay (special case)
+    const noteHtml = m.note
+      ? `<div style="font-family:var(--font-d);font-size:12px;color:var(--amber);text-align:center;padding:4px 8px 8px;line-height:1.5">${{m.note}}</div>`
+      : '';
+
+    return `<div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+      <svg width="${{panelW}}" height="${{PH}}" viewBox="0 0 ${{panelW}} ${{PH}}" style="display:block">${{s}}</svg>
+      ${{noteHtml}}
+    </div>`;
+  }}).join('');
 }}
 
 function renderHeatmap() {{
