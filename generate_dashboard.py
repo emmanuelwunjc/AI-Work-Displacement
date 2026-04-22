@@ -174,7 +174,7 @@ select option{{background:var(--bg2);color:var(--text)}}
 .section-head::after{{content:'';flex:1;height:1px;background:var(--border)}}
 
 .sector-grid{{
-  display:grid;grid-template-columns:repeat(5,1fr);
+  display:grid;grid-template-columns:repeat(4,1fr);
   gap:12px;margin-bottom:26px;
 }}
 .sector-card{{
@@ -202,10 +202,13 @@ select option{{background:var(--bg2);color:var(--text)}}
   position:absolute;top:0;height:100%;border-radius:2px;transition:width .6s ease;
 }}
 .sector-card.neg .sc-val{{color:var(--loss)}}
+.sector-card.neg .sc-pct{{color:var(--loss)}}
 .sector-card.neg .sc-bar-fill{{background:var(--loss)}}
 .sector-card.pos .sc-val{{color:var(--gain)}}
+.sector-card.pos .sc-pct{{color:var(--gain)}}
 .sector-card.pos .sc-bar-fill{{background:var(--gain)}}
 .sector-card.neu .sc-val{{color:var(--text)}}
+.sector-card.neu .sc-pct{{color:var(--text)}}
 .sector-card.neu .sc-bar-fill{{background:var(--muted)}}
 
 /* ── IMPACT SUMMARY TABLE ── */
@@ -465,6 +468,18 @@ tbody td{{
   display:flex;align-items:center;justify-content:center;
   height:200px;color:var(--text);font-family:var(--font-d);font-size:14px;
 }}
+
+/* ── GLOBAL TOOLTIP ── */
+#alm-tt{{
+  position:fixed;z-index:2000;pointer-events:none;display:none;
+  background:rgba(9,9,14,.97);backdrop-filter:blur(14px);
+  border:1px solid var(--border);border-radius:8px;
+  padding:9px 15px;font-family:var(--font-d);font-size:13px;
+  color:var(--text);white-space:nowrap;
+  box-shadow:0 6px 28px rgba(0,0,0,.5);
+}}
+#alm-tt .tt-code{{font-weight:700;margin-right:6px}}
+[data-tt]{{cursor:default}}
 </style>
 </head>
 <body>
@@ -548,7 +563,7 @@ tbody td{{
       </div>
       <div class="hero-card amber fade-up fade-up-2">
         <div class="hc-label">LLM Wave — Next Scenario</div>
-        <div class="hc-val" id="counter-llm">−228,153</div>
+        <div class="hc-val" id="counter-llm" style="color:var(--loss)">−228,153</div>
         <div class="hc-sub">4.4× the AV impact — shifts from manual to cognitive and office workers</div>
       </div>
       <div class="hero-card teal fade-up fade-up-3">
@@ -676,17 +691,19 @@ tbody td{{
         <div id="waterfall-container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px"></div>
       </div>
       <div class="impact-bottom-3">
-        <div class="impact-panel" style="overflow:hidden">
-          <div class="impact-panel-title">Sector Job Change — Treemap</div>
-          <div id="sector-impact-bars" style="flex:1;min-height:0;overflow:hidden"></div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="impact-panel" style="overflow:hidden;flex:2;min-height:0">
+            <div class="impact-panel-title">Sector Job Change — Treemap</div>
+            <div id="sector-impact-bars" style="flex:1;min-height:0;overflow:hidden"></div>
+          </div>
+          <div class="impact-panel" style="flex:1;min-height:0">
+            <div class="impact-panel-title">Job Loss by Task Type</div>
+            <div id="alm-donut" style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;flex:1"></div>
+          </div>
         </div>
         <div class="impact-panel">
           <div class="impact-panel-title">Sector × Task Type Heatmap</div>
           <div id="alm-heatmap" style="overflow-x:auto;overflow-y:auto;flex:1;min-height:0"></div>
-          <div style="flex-shrink:0;border-top:1px solid var(--border);padding-top:12px;margin-top:10px">
-            <div class="impact-panel-title">Job Loss by Task Type</div>
-            <div id="alm-donut" style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap"></div>
-          </div>
         </div>
       </div>
     </div>
@@ -746,6 +763,7 @@ tbody td{{
 
 </div>
 
+<div id="alm-tt"></div>
 <script type="application/json" id="raw-data">{RAW}</script>
 <script>
 // ── DATA ─────────────────────────────────────────────────────────────────────
@@ -769,6 +787,34 @@ const ALM_LABEL = {{
   'RM':    'Routine Manual',
   'NRM':   'Non-routine Manual',
 }};
+const ALM_TT = {{
+  'NRC-A': 'NRC-A · Non-Routine Cognitive — Analytic',
+  'NRC-I': 'NRC-I · Non-Routine Cognitive — Interpersonal',
+  'RC':    'RC · Routine Cognitive',
+  'RM':    'RM · Routine Manual',
+  'NRM':   'NRM · Non-Routine Manual',
+}};
+
+// ── GLOBAL ALM TOOLTIP ───────────────────────────────────────────────────────
+(function() {{
+  const tt = document.getElementById('alm-tt');
+  document.addEventListener('mouseover', e => {{
+    const el = e.target.closest('[data-tt]');
+    if (!el) {{ tt.style.display='none'; return; }}
+    tt.innerHTML = el.dataset.tt;
+    tt.style.display = 'block';
+  }});
+  document.addEventListener('mousemove', e => {{
+    if (tt.style.display === 'none') return;
+    const x = e.clientX + 16, y = e.clientY - 44;
+    tt.style.left = Math.min(x, window.innerWidth - tt.offsetWidth - 8) + 'px';
+    tt.style.top  = Math.max(8, y) + 'px';
+  }});
+  document.addEventListener('mouseout', e => {{
+    if (e.target.closest('[data-tt]') && !e.relatedTarget?.closest('[data-tt]'))
+      tt.style.display = 'none';
+  }});
+}})();
 
 // ── STATE ────────────────────────────────────────────────────────────────────
 let currentWave = 'current';
@@ -913,7 +959,7 @@ function renderTable() {{
     const almColor = ALM_COLOR[d.alm] || '#888';
     return `<tr onclick="selectIndustry('${{d.full.replace(/'/g,"\\'")}}')">
       <td title="${{d.full}}">${{d.name}}</td>
-      <td><span class="alm-badge" style="background:${{almColor}}22;color:${{almColor}}">${{d.alm}}</span></td>
+      <td><span class="alm-badge" style="background:${{almColor}}22;color:${{almColor}}" data-tt="${{ALM_TT[d.alm]}}">${{d.alm}}</span></td>
       <td class="td-num ${{cls}}">${{chg>=0?'+':''}}${{fmt(chg)}}</td>
       <td class="td-num ${{cls}}">${{fmtP(d.pct_emp)}}</td>
       <td class="td-num">${{fmtW(d.mean_wage)}}</td>
@@ -967,7 +1013,7 @@ function renderDetailPanel() {{
       <div class="dp-name">${{d.name}}</div>
       <div class="dp-sector">
         ${{d.sector}} &nbsp;·&nbsp;
-        <span style="color:${{almColor}}">${{ALM_LABEL[d.alm]}}</span>
+        <span style="color:${{almColor}}" data-tt="${{ALM_TT[d.alm]}}">${{ALM_LABEL[d.alm]}}</span>
       </div>
     </div>
     <div class="dp-kpis">
@@ -1021,7 +1067,7 @@ function renderImpact() {{
   renderWaterfall();
   renderTreemap();
   renderHeatmap();
-  renderDonut();
+  renderJobLossPies();
 }}
 
 function renderWaterfall() {{
@@ -1236,55 +1282,91 @@ function renderHeatmap() {{
   el.innerHTML = `<table class="heatmap-table">
     <thead><tr>
       <th class="heatmap-th heatmap-name-th">Sector</th>
-      ${{alms.map(a=>`<th class="heatmap-th" style="color:${{ALM_COLOR[a]}}">${{a}}</th>`).join('')}}
+      ${{alms.map(a=>`<th class="heatmap-th" style="color:${{ALM_COLOR[a]}}" data-tt="${{ALM_TT[a]}}">${{a}}</th>`).join('')}}
     </tr></thead>
     <tbody>${{rows}}</tbody>
   </table>`;
 }}
 
-function renderDonut() {{
+function renderJobLossPies() {{
   const el = document.getElementById('alm-donut');
   if (!el) return;
+
+  // Shared donut builder
+  function makePie(slices, centerTop, centerBot) {{
+    const R=52, r=30, cx=58, cy=58;
+    let ang = -Math.PI/2;
+    let paths = '';
+    slices.forEach(d => {{
+      const end = ang + d.frac * 2 * Math.PI;
+      const x1=(cx+R*Math.cos(ang)).toFixed(2),  y1=(cy+R*Math.sin(ang)).toFixed(2);
+      const x2=(cx+R*Math.cos(end)).toFixed(2),  y2=(cy+R*Math.sin(end)).toFixed(2);
+      const i1=(cx+r*Math.cos(ang)).toFixed(2), j1=(cy+r*Math.sin(ang)).toFixed(2);
+      const i2=(cx+r*Math.cos(end)).toFixed(2), j2=(cy+r*Math.sin(end)).toFixed(2);
+      const lg = d.frac>0.5?1:0;
+      paths += `<path d="M${{x1}},${{y1}} A${{R}},${{R}} 0 ${{lg}},1 ${{x2}},${{y2}} L${{i2}},${{j2}} A${{r}},${{r}} 0 ${{lg}},0 ${{i1}},${{j1}} Z" fill="${{d.color}}" opacity="0.85"><title>${{d.label}}: ${{d.detail}}</title></path>`;
+      ang = end;
+    }});
+    paths += `<text x="${{cx}}" y="${{cy-3}}" fill="#EAE5DC" font-size="13" font-family="JetBrains Mono" text-anchor="middle" font-weight="600">${{centerTop}}</text>`;
+    paths += `<text x="${{cx}}" y="${{cy+13}}" fill="#8A84A0" font-size="12" font-family="Syne" text-anchor="middle">${{centerBot}}</text>`;
+    return `<svg width="116" height="116" viewBox="0 0 116 116">${{paths}}</svg>`;
+  }}
+
+  function makeLegend(slices) {{
+    return slices.map(d =>
+      `<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+        <div style="width:10px;height:10px;border-radius:2px;background:${{d.color}};flex-shrink:0"></div>
+        <span style="font-family:var(--font-d);font-size:12px;color:var(--text)">${{d.label}}: ${{d.detail}}</span>
+      </div>`
+    ).join('');
+  }}
+
+  // ── PIE 1: By Task Type ────────────────────────────────────────────────────
   const alms = ['NRC-A','NRC-I','RC','RM','NRM'];
+  const rawTask = alms.map(a => {{
+    const chg = INDUSTRIES.filter(i=>i.alm===a)
+      .reduce((s,i)=>s+(currentWave==='llm'?i.llm_chg_emp:i.chg_emp),0);
+    return {{label:a, chg, abs:Math.abs(chg), color:ALM_COLOR[a]}};
+  }});
+  const taskLoss = rawTask.filter(d=>d.chg<0);
+  const taskTotal = taskLoss.reduce((s,d)=>s+d.abs,0);
+  const taskSlices = taskLoss.map(d=>({{...d, frac:d.abs/taskTotal, detail:(d.abs/taskTotal*100).toFixed(1)+'%'}}));
 
-  const data = alms.map(a => {{
-    const inds = INDUSTRIES.filter(i=>i.alm===a);
-    const chg = currentWave==='llm'
-      ? inds.reduce((s,i)=>s+i.llm_chg_emp,0)
-      : inds.reduce((s,i)=>s+i.chg_emp,0);
-    return {{alm:a, chg, label:ALM_LABEL[a]}};
-  }}).filter(d=>d.chg<0);
-
-  const total = data.reduce((s,d)=>s+Math.abs(d.chg),0);
-  const R=54, r=32, cx=62, cy=62;
-
-  let startAngle = -Math.PI/2;
-  let paths = '';
-  data.forEach(d => {{
-    const frac = Math.abs(d.chg)/total;
-    const endAngle = startAngle + frac*2*Math.PI;
-    const x1=(cx+R*Math.cos(startAngle)).toFixed(2), y1=(cy+R*Math.sin(startAngle)).toFixed(2);
-    const x2=(cx+R*Math.cos(endAngle)).toFixed(2),   y2=(cy+R*Math.sin(endAngle)).toFixed(2);
-    const xi1=(cx+r*Math.cos(startAngle)).toFixed(2), yi1=(cy+r*Math.sin(startAngle)).toFixed(2);
-    const xi2=(cx+r*Math.cos(endAngle)).toFixed(2),   yi2=(cy+r*Math.sin(endAngle)).toFixed(2);
-    const large = frac>0.5?1:0;
-    const color = ALM_COLOR[d.alm];
-    paths += `<path d="M${{x1}},${{y1}} A${{R}},${{R}} 0 ${{large}},1 ${{x2}},${{y2}} L${{xi2}},${{yi2}} A${{r}},${{r}} 0 ${{large}},0 ${{xi1}},${{yi1}} Z" fill="${{color}}" opacity="0.87"><title>${{d.alm}}: ${{(frac*100).toFixed(1)}}%</title></path>`;
-    startAngle = endAngle;
+  // ── PIE 2: By D/I/Ind Channel ─────────────────────────────────────────────
+  // AV wave I-O model values; LLM wave uses same D/I/Ind structure scaled
+  const isLlm = currentWave==='llm';
+  const diiSlices = [
+    {{label:'Direct',   abs: isLlm?Math.abs(D.summary.llm_wave.net_jobs*0.90):69084, chg:-1, color:'#C8243E'}},
+    {{label:'Indirect', abs: isLlm?Math.abs(D.summary.llm_wave.net_jobs*0.25):41222, chg: 1, color:'#1B9160'}},
+    {{label:'Induced',  abs: isLlm?Math.abs(D.summary.llm_wave.net_jobs*0.35):24368, chg:-1, color:'#D49216'}},
+  ];
+  const diiTotal = diiSlices.reduce((s,d)=>s+d.abs,0);
+  diiSlices.forEach(d => {{
+    d.frac   = d.abs / diiTotal;
+    d.detail = (d.chg<0?'−':'+') + Math.round(d.abs).toLocaleString();
   }});
 
-  paths += `<text x="${{cx}}" y="${{cy-3}}" fill="#EAE5DC" font-size="13" font-family="JetBrains Mono" text-anchor="middle" font-weight="600">${{(total/1000).toFixed(0)}}K</text>`;
-  paths += `<text x="${{cx}}" y="${{cy+13}}" fill="#8A84A0" font-size="12" font-family="Syne" text-anchor="middle">lost</text>`;
+  const pie1svg = makePie(taskSlices, (taskTotal/1000).toFixed(0)+'K', 'by type');
+  const pie2svg = makePie(diiSlices,  (diiTotal /1000).toFixed(0)+'K', 'by channel');
 
-  const legend = data.map(d =>
-    `<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
-      <div style="width:10px;height:10px;border-radius:2px;background:${{ALM_COLOR[d.alm]}};flex-shrink:0"></div>
-      <span style="font-family:var(--font-d);font-size:12px;color:var(--text)">${{d.alm}}: ${{(Math.abs(d.chg)/total*100).toFixed(1)}}%</span>
-    </div>`
-  ).join('');
-
-  el.innerHTML = `<svg width="124" height="124" viewBox="0 0 124 124">${{paths}}</svg>
-    <div style="padding:0 4px">${{legend}}</div>`;
+  el.innerHTML = `
+    <div style="display:flex;gap:20px;align-items:flex-start;justify-content:space-around;width:100%;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;min-width:180px">
+        <div style="font-family:var(--font-d);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text)">By Task Type</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          ${{pie1svg}}
+          <div>${{makeLegend(taskSlices)}}</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;min-width:180px">
+        <div style="font-family:var(--font-d);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text)">By Impact Channel</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          ${{pie2svg}}
+          <div>${{makeLegend(diiSlices)}}</div>
+        </div>
+        <div style="font-family:var(--font-d);font-size:12px;color:var(--amber);text-align:center">Direct shock · Indirect gain · Induced loss</div>
+      </div>
+    </div>`;
 }}
 
 function squarifyLayout(items, x, y, w, h) {{
@@ -1332,9 +1414,14 @@ function squarifyLayout(items, x, y, w, h) {{
 function renderTreemap() {{
   const el = document.getElementById('sector-impact-bars');
   if (!el) return;
-  const rect = el.getBoundingClientRect();
-  const W = Math.max(rect.width || 280, 200);
-  const H = Math.max(rect.height || 280, 200);
+  // Defer to next frame so flex layout has resolved before we measure
+  requestAnimationFrame(() => {{
+    const W = Math.max(el.offsetWidth  || 280, 100);
+    const H = Math.max(el.offsetHeight || 280, 100);
+    _doRenderTreemap(el, W, H);
+  }});
+}}
+function _doRenderTreemap(el, W, H) {{
   const items = SECTORS.map(s => {{
     const chg = currentWave==='llm'
       ? INDUSTRIES.filter(i=>i.sector===s.Sector).reduce((a,b)=>a+b.llm_chg_emp,0)
@@ -1352,23 +1439,29 @@ function renderTreemap() {{
     .replace('Personal Services & Repair','Personal Svc')
     .replace('Government & Non-profit','Gov & Nonprofit')
     .replace('Information & Technology','Info & Tech');
-  const svgParts = rects.map(r => {{
+  // Build clipPaths and cells separately so defs can go at top of SVG
+  const clipDefs = rects.map((r, ri) =>
+    `<clipPath id="tmc${{ri}}"><rect x="${{(r.x+2).toFixed(1)}}" y="${{(r.y+2).toFixed(1)}}" width="${{Math.max(0,r.w-4).toFixed(1)}}" height="${{Math.max(0,r.h-4).toFixed(1)}}"/></clipPath>`
+  ).join('');
+
+  const cells = rects.map((r, ri) => {{
     const color = r.chg < 0 ? '#C8243E' : '#1B9160';
     const alpha = Math.max(0.45, Math.min(0.85, 0.5 + r.value/items[0].value*0.35));
-    const name = abbrev(r.name);
-    const val = (r.chg>=0?'+':'') + (Math.abs(r.chg)>=1000?(r.chg/1000).toFixed(1)+'K':Math.round(r.chg).toString());
-    const showName = r.h>=34 && r.w>=50;
-    const showVal  = r.h>=20 && r.w>=36;
+    const name  = abbrev(r.name);
+    const val   = (r.chg>=0?'+':'') + (Math.abs(r.chg)>=1000?(r.chg/1000).toFixed(1)+'K':Math.round(r.chg).toString());
+    // Only show text when cell is large enough to read comfortably
+    const showName = r.w >= 96 && r.h >= 46;
+    const showVal  = r.w >= 68 && r.h >= 30;
+    const cp  = `clip-path="url(#tmc${{ri}})"`;
     const midX = (r.x + r.w/2).toFixed(1);
-    const midY = (r.y + r.h/2).toFixed(1);
-    const nameY = showName && showVal ? (r.y+r.h/2-8).toFixed(1) : midY;
-    const valY  = showName && showVal ? (r.y+r.h/2+10).toFixed(1) : midY;
-    return `<rect x="${{(r.x+1).toFixed(1)}}" y="${{(r.y+1).toFixed(1)}}" width="${{Math.max(0,r.w-2).toFixed(1)}}" height="${{Math.max(0,r.h-2).toFixed(1)}}" fill="${{color}}" fill-opacity="${{alpha.toFixed(2)}}" rx="3">
-        <title>${{r.name}}: ${{val}} jobs</title></rect>
-      ${{showName ? `<text x="${{midX}}" y="${{nameY}}" fill="#EAE5DC" font-size="12" font-family="Syne" font-weight="700" text-anchor="middle" dominant-baseline="middle">${{name}}</text>` : ''}}
-      ${{showVal  ? `<text x="${{midX}}" y="${{valY}}"  fill="#EAE5DC" font-size="12" font-family="JetBrains Mono" text-anchor="middle" dominant-baseline="middle">${{val}}</text>` : ''}}`;
+    const nameY = (r.y + r.h/2 - (showVal ? 9 : 0)).toFixed(1);
+    const valY  = (r.y + r.h/2 + (showName ? 11 : 0)).toFixed(1);
+    return `<rect x="${{(r.x+1).toFixed(1)}}" y="${{(r.y+1).toFixed(1)}}" width="${{Math.max(0,r.w-2).toFixed(1)}}" height="${{Math.max(0,r.h-2).toFixed(1)}}" fill="${{color}}" fill-opacity="${{alpha.toFixed(2)}}" rx="3"><title>${{r.name}}: ${{val}} jobs</title></rect>
+    ${{showName ? `<text x="${{midX}}" y="${{nameY}}" fill="#EAE5DC" font-size="12" font-family="Syne" font-weight="700" text-anchor="middle" dominant-baseline="middle" ${{cp}}>${{name}}</text>` : ''}}
+    ${{showVal  ? `<text x="${{midX}}" y="${{valY}}"  fill="#EAE5DC" font-size="12" font-family="JetBrains Mono" text-anchor="middle" dominant-baseline="middle" ${{cp}}>${{val}}</text>`  : ''}}`;
   }});
-  el.innerHTML = `<svg width="${{W}}" height="${{H}}" viewBox="0 0 ${{W}} ${{H}}" style="display:block">${{svgParts.join('')}}</svg>`;
+
+  el.innerHTML = `<svg width="${{W}}" height="${{H}}" viewBox="0 0 ${{W}} ${{H}}" style="display:block"><defs>${{clipDefs}}</defs>${{cells.join('')}}</svg>`;
 }}
 
 // ── WAVE ANALYSIS ─────────────────────────────────────────────────────────────
@@ -1394,7 +1487,7 @@ function renderWaves() {{
     return `<div class="alm-bar-row">
       <div class="alm-bar-header">
         <span>
-          <span style="color:${{color}};font-weight:700;font-family:var(--font-d)">${{alm}}</span>
+          <span style="color:${{color}};font-weight:700;font-family:var(--font-d)" data-tt="${{ALM_TT[alm]}}">${{alm}}</span>
           <span style="color:var(--text);font-size:14px;margin-left:8px;font-family:var(--font-d)">${{ALM_LABEL[alm]}}</span>
         </span>
         <span class="${{cls}}" style="font-family:var(--font-m);font-size:14px;white-space:nowrap">${{val>=0?'+':''}}${{fmt(val)}}</span>
