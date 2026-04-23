@@ -277,7 +277,7 @@ tbody tr{border-bottom:1px solid rgba(34,34,50,.6);cursor:pointer;transition:bac
 tbody tr:hover{background:var(--bg3)}
 tbody tr.selected{background:rgba(10,173,181,.08);border-left:3px solid var(--teal)}
 tbody td{
-  padding:14px 16px;font-size:14px;
+  padding:14px 16px;font-size:14px;font-family:var(--font-d);
   color:var(--text);line-height:1.4;white-space:normal;overflow:visible;
 }
 .col-name{width:170px;min-width:170px;max-width:170px}
@@ -394,6 +394,17 @@ tbody td{
   border-bottom:1px solid rgba(34,34,50,.3);
 }
 #donut-svg{display:block}
+
+/* ── TREEMAP TOOLTIP ── */
+#tm-tip{
+  position:fixed;pointer-events:none;z-index:999;
+  background:var(--bg4);border:1px solid var(--border);border-radius:8px;
+  padding:10px 14px;display:none;max-width:260px;
+  font-family:var(--font-d);font-size:13px;line-height:1.5;color:var(--text);
+  box-shadow:0 8px 24px rgba(0,0,0,.5);
+}
+#tm-tip .tip-name{font-weight:700;font-size:14px;margin-bottom:4px}
+#tm-tip .tip-val{font-family:var(--font-m);font-size:13px}
 
 /* ── WAVE ANALYSIS ── */
 .wave-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
@@ -557,8 +568,8 @@ tbody td{
       </div>
       <div class="hero-card teal fade-up fade-up-3">
         <div class="hc-label">Output Impact</div>
-        <div class="hc-val">≈ $0</div>
-        <div class="hc-sub">AV preserves trucking output via productivity gains — jobs fall but freight still moves</div>
+        <div class="hc-val" style="color:var(--gain)">+$2.6B</div>
+        <div class="hc-sub">AV preserves trucking output via productivity gains — freight still moves, indirect output rises slightly</div>
       </div>
     </div>
 
@@ -568,10 +579,10 @@ tbody td{
         <thead>
           <tr>
             <th>Impact Type</th>
-            <th>Employment</th>
-            <th>Labor Income</th>
-            <th>Value Added (GDP)</th>
-            <th>Output</th>
+            <th style="color:var(--teal)">Employment</th>
+            <th style="color:var(--nrca)">Labor Income</th>
+            <th style="color:var(--nrci)">Value Added (GDP)</th>
+            <th style="color:var(--amber)">Output</th>
           </tr>
         </thead>
         <tbody>
@@ -580,25 +591,32 @@ tbody td{
             <td class="td-loss">−69,084</td>
             <td class="td-loss">−$7.0B</td>
             <td class="td-loss">−$6.0B</td>
-            <td>$0</td>
+            <td class="td-neutral">$0</td>
           </tr>
           <tr>
-            <td><span class="mult-tag indirect">Indirect &amp; Induced</span></td>
-            <td class="td-gain">+16,854</td>
-            <td class="td-gain">+$1.0B</td>
-            <td class="td-gain">+$2.0B</td>
+            <td><span class="mult-tag indirect">Indirect</span></td>
+            <td class="td-gain">+41,222</td>
             <td class="td-gain">+$3.0B</td>
+            <td class="td-gain">+$5.0B</td>
+            <td class="td-gain">+$7.9B</td>
+          </tr>
+          <tr>
+            <td><span class="mult-tag induced">Induced</span></td>
+            <td class="td-loss">−24,368</td>
+            <td class="td-loss">−$2.0B</td>
+            <td class="td-loss">−$3.0B</td>
+            <td class="td-loss">−$5.3B</td>
           </tr>
           <tr class="total-row">
             <td><span class="mult-tag total">Total Net</span></td>
             <td class="td-loss">−52,231</td>
             <td class="td-loss">−$5.0B</td>
             <td class="td-loss">−$4.0B</td>
-            <td>≈ $0</td>
+            <td class="td-gain">+$2.6B</td>
           </tr>
         </tbody>
       </table>
-      <div class="ist-scope">United States (US Totals) · IMPLAN I-O 2024 · Autonomous Vehicle shock scenario · Pre-AI 2024 baseline</div>
+      <div class="ist-scope">United States (US Totals) · <a href="https://implan.com" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">IMPLAN I-O 2024</a> · Autonomous Vehicle shock scenario · Pre-AI 2024 baseline</div>
       <div class="ist-defs">
         <strong>Employment</strong> — Full- and part-time jobs (headcount) &nbsp;·&nbsp;
         <strong>Labor Income</strong> — Salaries, wages, and benefits &nbsp;·&nbsp;
@@ -703,7 +721,7 @@ tbody td{
     <div class="wave-layout">
       <div class="wave-panel">
         <div class="wp-title" style="color:var(--teal)">Current AI Wave</div>
-        <div class="wp-subtitle">Autonomous vehicle shock — concentrated in Routine Manual sectors</div>
+        <div class="wp-subtitle">Autonomous vehicle shock — concentrated in Routine Manual sectors &nbsp;·&nbsp; Task classification: <a href="https://www.nber.org/papers/w8337" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">ALM (2003)</a></div>
         <div class="alm-bars" id="wave-current-bars"></div>
       </div>
       <div class="wave-panel">
@@ -711,7 +729,7 @@ tbody td{
         <div class="llm-def-box">
           <strong>What is the Next Wave?</strong> Large language models automate cognitive knowledge work — analysis, writing, legal review, code generation, data processing — unlike the current AV wave which targets physical and manual labor.<br><br>
           <strong>Timeframe:</strong> 2025–2030 transition horizon (1–5 year adoption curve) &nbsp;·&nbsp;
-          <strong>Shock rates (Acemoglu 2023):</strong> Routine Cognitive −15% &nbsp;·&nbsp; NRC-Analytic −8% &nbsp;·&nbsp; NRC-Interpersonal −5% &nbsp;·&nbsp; Manual workers: unaffected
+          <strong>Shock rates (<a href="https://www.nber.org/papers/w32487" target="_blank" style="color:var(--amber);text-decoration:underline;text-underline-offset:3px">Acemoglu 2024</a>):</strong> Routine Cognitive −15% &nbsp;·&nbsp; NRC-Analytic −8% &nbsp;·&nbsp; NRC-Interpersonal −5% &nbsp;·&nbsp; Manual workers: unaffected
         </div>
         <div class="wp-subtitle">Projected employment change by task type, assuming full shock realization</div>
         <div class="alm-bars" id="wave-llm-bars"></div>
@@ -817,7 +835,7 @@ const fmt  = n => n == null ? '—' : Math.abs(n) >= 1e6
   ? (n/1e6).toFixed(1)+'M'
   : Math.abs(n) >= 1e3
   ? Number(n).toLocaleString('en-US',{maximumFractionDigits:0})
-  : Number(n).toFixed(1);
+  : Math.round(n).toLocaleString('en-US');
 const fmtW = n => n ? '$'+Math.round(n/1000)+'K' : '—';
 const fmtP = n => (n >= 0 ? '+' : '') + Number(n).toFixed(2) + '%';
 const sign  = n => n < 0 ? 'td-loss' : n > 0 ? 'td-gain' : 'td-neutral';
@@ -1046,7 +1064,7 @@ function renderDetailPanel() {
     <div class="llm-box">
       <div class="llm-box-title">LLM Next Wave Projection</div>
       <div class="llm-box-val">${d.llm_chg_emp>=0?'+':''}${fmt(d.llm_chg_emp)} jobs</div>
-      <div class="llm-box-sub">Shock rate: ${(d.llm_shock_rate*100).toFixed(0)}% &nbsp;·&nbsp; Source: Acemoglu (2023)</div>
+      <div class="llm-box-sub">Shock rate: ${(d.llm_shock_rate*100).toFixed(0)}% &nbsp;·&nbsp; Source: <a href="https://www.nber.org/papers/w32487" target="_blank" style="color:var(--amber);text-decoration:underline;text-underline-offset:3px">Acemoglu (2024)</a></div>
     </div>
   `;
 }
@@ -1280,25 +1298,37 @@ function renderHeatmap() {
 function renderJobLossPies() {
   const el = document.getElementById('alm-donut');
   if (!el) return;
+  requestAnimationFrame(() => _doRenderPies(el));
+}
+function _doRenderPies(el) {
+  const H  = el.offsetHeight || 200;
+  const W  = el.offsetWidth  || 400;
+  // Two pies side-by-side, each with a ~110px legend column and a gap
+  const legendW = 110, gapW = 20, outerPad = 32;
+  const perPieW = Math.max(80, (W - outerPad - gapW * 3 - legendW * 2) / 2);
+  const sz = Math.max(80, Math.min(H - 28, perPieW));
 
   // Shared donut builder
   function makePie(slices, centerTop, centerBot) {
-    const R=52, r=30, cx=58, cy=58;
-    let ang = -Math.PI/2;
-    let paths = '';
+    const cx = sz/2, cy = sz/2;
+    const R  = sz * 0.44, r = R * 0.56;
+    const fs1 = Math.max(9,  Math.round(sz * 11/116));
+    const fs2 = Math.max(8,  Math.round(sz * 10/116));
+    let ang = -Math.PI/2, paths = '';
     slices.forEach(d => {
       const end = ang + d.frac * 2 * Math.PI;
-      const x1=(cx+R*Math.cos(ang)).toFixed(2),  y1=(cy+R*Math.sin(ang)).toFixed(2);
-      const x2=(cx+R*Math.cos(end)).toFixed(2),  y2=(cy+R*Math.sin(end)).toFixed(2);
+      const x1=(cx+R*Math.cos(ang)).toFixed(2), y1=(cy+R*Math.sin(ang)).toFixed(2);
+      const x2=(cx+R*Math.cos(end)).toFixed(2), y2=(cy+R*Math.sin(end)).toFixed(2);
       const i1=(cx+r*Math.cos(ang)).toFixed(2), j1=(cy+r*Math.sin(ang)).toFixed(2);
       const i2=(cx+r*Math.cos(end)).toFixed(2), j2=(cy+r*Math.sin(end)).toFixed(2);
       const lg = d.frac>0.5?1:0;
       paths += `<path d="M${x1},${y1} A${R},${R} 0 ${lg},1 ${x2},${y2} L${i2},${j2} A${r},${r} 0 ${lg},0 ${i1},${j1} Z" fill="${d.color}" opacity="0.85"><title>${d.label}: ${d.detail}</title></path>`;
       ang = end;
     });
-    paths += `<text x="${cx}" y="${cy-3}" fill="#EAE5DC" font-size="13" font-family="JetBrains Mono" text-anchor="middle" font-weight="600">${centerTop}</text>`;
-    paths += `<text x="${cx}" y="${cy+13}" fill="#8A84A0" font-size="12" font-family="Syne" text-anchor="middle">${centerBot}</text>`;
-    return `<svg width="116" height="116" viewBox="0 0 116 116">${paths}</svg>`;
+    const midY1 = (cy - fs1*0.3).toFixed(1), midY2 = (cy + fs1*1.1).toFixed(1);
+    paths += `<text x="${(cx).toFixed(1)}" y="${midY1}" fill="#EAE5DC" font-size="${fs1}" font-family="JetBrains Mono" text-anchor="middle" font-weight="600">${centerTop}</text>`;
+    paths += `<text x="${(cx).toFixed(1)}" y="${midY2}" fill="#8A84A0" font-size="${fs2}" font-family="Syne" text-anchor="middle">${centerBot}</text>`;
+    return `<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}">${paths}</svg>`;
   }
 
   function makeLegend(slices) {
@@ -1445,12 +1475,27 @@ function _doRenderTreemap(el, W, H) {
     const midX = (r.x + r.w/2).toFixed(1);
     const nameY = (r.y + r.h/2 - (showVal ? 9 : 0)).toFixed(1);
     const valY  = (r.y + r.h/2 + (showName ? 11 : 0)).toFixed(1);
-    return `<rect x="${(r.x+1).toFixed(1)}" y="${(r.y+1).toFixed(1)}" width="${Math.max(0,r.w-2).toFixed(1)}" height="${Math.max(0,r.h-2).toFixed(1)}" fill="${color}" fill-opacity="${alpha.toFixed(2)}" rx="3"><title>${r.name}: ${val} jobs</title></rect>
+    return `<rect x="${(r.x+1).toFixed(1)}" y="${(r.y+1).toFixed(1)}" width="${Math.max(0,r.w-2).toFixed(1)}" height="${Math.max(0,r.h-2).toFixed(1)}" fill="${color}" fill-opacity="${alpha.toFixed(2)}" rx="3" data-name="${r.name}" data-val="${val}"></rect>
     ${showName ? `<text x="${midX}" y="${nameY}" fill="#EAE5DC" font-size="12" font-family="Syne" font-weight="700" text-anchor="middle" dominant-baseline="middle" ${cp}>${name}</text>` : ''}
     ${showVal  ? `<text x="${midX}" y="${valY}"  fill="#EAE5DC" font-size="12" font-family="JetBrains Mono" text-anchor="middle" dominant-baseline="middle" ${cp}>${val}</text>`  : ''}`;
   });
 
   el.innerHTML = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block"><defs>${clipDefs}</defs>${cells.join('')}</svg>`;
+
+  const tip = document.getElementById('tm-tip');
+  const tipName = tip.querySelector('.tip-name');
+  const tipVal  = tip.querySelector('.tip-val');
+  el.querySelector('svg').addEventListener('mousemove', e => {
+    const rect = e.target.closest('rect[data-name]');
+    if (!rect) { tip.style.display = 'none'; return; }
+    tipName.textContent = rect.dataset.name;
+    tipVal.textContent  = rect.dataset.val + ' jobs';
+    tipVal.className = 'tip-val ' + (rect.dataset.val.startsWith('-') ? 'td-loss' : 'td-gain');
+    tip.style.display = 'block';
+    tip.style.left = (e.clientX + 14) + 'px';
+    tip.style.top  = (e.clientY - 10) + 'px';
+  });
+  el.querySelector('svg').addEventListener('mouseleave', () => { tip.style.display = 'none'; });
 }
 
 // ── WAVE ANALYSIS ─────────────────────────────────────────────────────────────
@@ -1520,5 +1565,6 @@ populateSectorFilter();
 applyFilters();
 renderOverview();
 </script>
+<div id="tm-tip"><div class="tip-name"></div><div class="tip-val"></div></div>
 </body>
 </html>
